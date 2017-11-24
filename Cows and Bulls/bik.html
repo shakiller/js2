@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    var chislo = Math.floor(Math.random()*8999)+1000;
+
+        document.write(chislo+ '<br>');
+        
+do{    
+    do {
+        var search = prompt(chislo + ' 4-х значное число','');
+        if (search > 10000 && search < 999)  alert ('ещё разок');
+    } while ((search > 10000)||(search < 999))
+
+
+       var bik = 0;
+       var korova = 0;
+    
+    
+    
+                    var proverka = function(chislo,search){
+                        chislo = chislo+'';
+                        search = search + ''
+                        var chisloArr = chislo.split('');
+                        console.log(chisloArr);
+                        var searchArr = search.split('');    
+                        console.log(searchArr);
+                        for( var i = 0 ; i < 4 ; i++){
+
+                            if (chisloArr[i] === searchArr[i]){
+                                bik++;
+                                chisloArr[i]=NaN;
+                                searchArr[i]=NaN;
+                                console.log('бык ' + bik);
+
+                            }
+
+                            for( var j = 0; j < 4; j++ ){
+                            console.log('i='+i+' j='+j + ' chislo ' +chisloArr[i]+' search '+searchArr[j]);
+                                if (j==i){continue}
+                                if(chisloArr[i] === searchArr[j]){
+
+                                    korova++;
+                                    console.log('корова ' + korova);
+                                    console.log(chisloArr[i]+' = '+searchArr[j] + ' korova ' +korova);
+                                    chisloArr[i]=NaN;
+                                    searchArr[j]=NaN;
+                                    console.log(' chislo ' + chisloArr[i]);
+
+                                }
+                            }
+                        }
+                        return(bik,korova);
+                    }
+    
+                    
+                    
+                    
+    
+    proverka(chislo,search);
+    alert(bik + ' быков ' + korova + ' коров ');console.log('+');
+    document.write(bik + ' быков ' + korova + ' коров ');console.log('++');
+    if(bik==4){document.write('агась')}
+} while(bik!=4)
+    
+    </script>
+</body>
+</html> 

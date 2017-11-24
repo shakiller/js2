@@ -19,6 +19,8 @@ do{
 
        var bik = 0;
        var korova = 0;
+        var bikok;
+        var korovaok;
     
     
     
@@ -26,30 +28,30 @@ do{
                         chislo = chislo+'';
                         search = search + ''
                         var chisloArr = chislo.split('');
-                        console.log(chisloArr);
+                        //console.log(chisloArr);
                         var searchArr = search.split('');    
-                        console.log(searchArr);
+                        console.log(search);
                         for( var i = 0 ; i < 4 ; i++){
 
                             if (chisloArr[i] === searchArr[i]){
                                 bik++;
                                 chisloArr[i]=NaN;
                                 searchArr[i]=NaN;
-                                console.log('бык ' + bik);
+                                //console.log('бык ' + bik);
 
                             }
 
                             for( var j = 0; j < 4; j++ ){
-                            console.log('i='+i+' j='+j + ' chislo ' +chisloArr[i]+' search '+searchArr[j]);
+                           /*console.log('i='+i+' j='+j + ' chislo ' +chisloArr[i]+' search '+searchArr[j]);*/
                                 if (j==i){continue}
                                 if(chisloArr[i] === searchArr[j]){
 
                                     korova++;
-                                    console.log('корова ' + korova);
-                                    console.log(chisloArr[i]+' = '+searchArr[j] + ' korova ' +korova);
+                                   /* console.log('корова ' + korova);
+                                    console.log(chisloArr[i]+' = '+searchArr[j] + ' korova ' +korova);*/
                                     chisloArr[i]=NaN;
                                     searchArr[j]=NaN;
-                                    console.log(' chislo ' + chisloArr[i]);
+                                    //console.log(' chislo ' + chisloArr[i]);
 
                                 }
                             }
@@ -62,8 +64,34 @@ do{
                     
     
     proverka(chislo,search);
-    alert(bik + ' быков ' + korova + ' коров ');console.log('+');
-    document.write(bik + ' быков ' + korova + ' коров ');console.log('++');
+
+    switch(bik) {
+          case 0:  // if (x === 'value1')
+            bikok='оff';
+            break;
+          case 1:  // if (x === 'value1')
+            bikok='';
+            break;
+          default:
+            bikok='а';
+
+          }
+     console.log   (bikok);
+    switch(korova) {
+         case 0:  // if (x === 'value1')
+            korovaok='';
+            break;
+          case 1:  // if (x === 'value1')
+            korovaok='а';
+            break;
+          default:
+            korovaok='ы';
+
+          }
+    console.log(korovaok);
+    alert(bik + ' бык'+bikok+' ' + korova + ' коров'+ korovaok);console.log('+');
+    document.write(bik + ' бык'+bikok+' ' + korova + ' коров'+ korovaok);
+    console.log(bik + ' бык'+bikok+' ' + korova + ' коров'+ korovaok);
     if(bik==4){document.write('агась')}
 } while(bik!=4)
     

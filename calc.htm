@@ -1,0 +1,106 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>Untitled</title>
+  <style>
+  form{
+      width:120px;
+      height:170px;
+      background: hsla(0, 0%, 75%, 1);
+      text-align: center;
+      padding:5px;
+      border-radius:5px;
+  }
+  p{
+      padding:5px;
+      background: hsla(0, 0%, 25%, 1);
+      margin:0 0 1em;
+      color:white;
+      text-align: right;
+  }
+  .body{
+      display:flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+  input{
+      margin-bottom:5px;
+  }
+
+  .col3{
+      width:30%;
+  }
+
+  </style>
+</head>
+
+<body>
+    <form>
+        <p id="res">0</p>
+       <div class="body">
+       <input type="button" onclick="addD(1);" value="1" class="col3">
+       <input type="button" onclick="addD(2);" value="2" class="col3">
+       <input type="button" onclick="addD(3);" value="3" class="col3">
+       <input type="button" onclick="addD(4);" value="4" class="col3">
+       <input type="button" onclick="addD(5);" value="5" class="col3">
+       <input type="button" onclick="addD(6);" value="6" class="col3">
+       <input type="button" onclick="addD(7);" value="7" class="col3">
+       <input type="button" onclick="addD(8);" value="8" class="col3">
+       <input type="button" onclick="addD(9);" value="9" class="col3">
+       <input type="button" onclick="addD(0);" value="0" class="col3">
+       <input type="button" onclick="operand1 ='';operand2 ='';operand ='';count='';document.getElementById('res').innerHTML=('0');" value="C" class="col3">
+       <input type="button" value="=" onclick="console.log(operand1,operand);result(operand1,operand,doIt);" class="col3">
+       <input type="button" value="/" onclick=" count='';go('/');">
+       <input type="button" value="*" onclick=" count='';go('*');">
+       <input type="button" value="-" onclick=" count='';go('-');">
+       <input type="button" value="+" onclick=" count='';go('+');">
+       </div>
+    </form>
+    <script>
+    var operand1='';
+    var operand2='';
+    var operand;
+    var count='';
+    var res;
+    doIt='';
+    function addD(number){
+         count = count + number;
+         operand = count;
+         document.getElementById("res").innerHTML=(operand);
+         return operand;
+     }
+    function go(dI){
+        operand1 = operand;
+        doIt=dI;
+        document.getElementById("res").innerHTML=(operand,dI);
+        return doIt;
+        }
+    function result(op1,op2,dI){
+     console.log('o1='+ op1);
+     console.log('o2='+ op2);
+     console.log('dI='+ dI);
+     switch (dI){
+        case '/': res = parseInt(op1) / parseInt(op2);
+        break;
+        case '*': res = parseInt(op1) * parseInt(op2);
+        break;
+        case '-': res = parseInt(op1) - parseInt(op2);
+        break;
+        case '+': res = parseInt(op1) + parseInt(op2);
+        break;
+     }
+
+
+document.getElementById("res").innerHTML=(res);
+
+     console.log(res);
+    return res;
+    }
+    console.log(res);
+
+    </script>
+</body>
+
+</html>

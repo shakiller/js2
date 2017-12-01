@@ -1,0 +1,125 @@
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+  <title>Untitled</title>
+  <meta charset="utf-8">
+  <style>
+  input{
+      width:50px;
+      height:50px;
+      color:#999;
+      background-color: #999;
+      font-size:2em;
+
+  }
+  input:focus{
+      color:#000;
+      background-color: #999;
+  }
+
+ form{
+      display: flex;
+      flex-wrap: wrap;
+      width:250px;
+  }
+  input[type="text"]{
+      width:100%;
+      order:20;
+      color:red;
+  }
+
+  </style>
+</head>
+
+<body>
+<div>
+    <form name="club">
+        <input type="button" style="order:1" onclick="openit(0);">
+        <input type="button" style="order:1" onclick="openit(1);">
+        <input type="button" style="order:1" onclick="openit(2);">
+        <input type="button" style="order:1" onclick="openit(3);">
+        <input type="button" style="order:1" onclick="openit(4);">
+        <input type="button" style="order:1" onclick="openit(5);">
+        <input type="button" style="order:1" onclick="openit(6);">
+        <input type="button" style="order:1" onclick="openit(7);">
+        <input type="button" style="order:1" onclick="openit(8);">
+        <input type="button" style="order:1" onclick="openit(9);">
+        <input type="button" style="order:1" onclick="openit(10);">
+        <input type="button" style="order:1" onclick="openit(11);">
+        <input type="button" style="order:1" onclick="openit(12);">
+        <input type="button" style="order:1" onclick="openit(13);">
+        <input type="button" style="order:1" onclick="openit(14);">
+        <input type="button" style="order:1" onclick="openit(15);">
+        <input type="button" style="order:1" onclick="openit(16);">
+        <input type="button" style="order:1" onclick="openit(17);">
+        <input type="button" style="order:1" onclick="openit(18);">
+        <input type="button" style="order:1" onclick="openit(19);">
+
+        <input type="hidden" name="finish" value="агась">
+</form>
+</div>
+<script>
+var allPic = document.forms.club;
+var arrPic = [];
+var count = 0;
+var result = 0;
+var para = [];
+para[1]=-1;
+para[2]=-1;
+var prew=[];
+for(var i=0;i<=allPic.length-2;i++){
+    allPic.elements[i].value = i%10;
+    orderI = 'order:' + Math.floor(Math.random(1)*10);
+    allPic.elements[i].style.cssText=orderI;
+    arrPic[i] = allPic.elements[i].value;
+}
+
+function openit(i){
+    allPic.elements[i].style.color="#000";
+    allPic.elements[i].style.backgroundColor="#fff";
+    console.log('p1 ' + para[1] + ' p2 ' +  para[2]);
+    count++;
+
+    if ((para[1] != -1)&&(para[2] == -1)){
+        para[2] = allPic.elements[i].value;
+        prew[1] = i;
+        console.log('para2= ' + para[2]); }
+    if ((para[1] == -1)&&(para[2] == -1)){
+        para[1] = allPic.elements[i].value;
+        prew[2] = i;
+        console.log('para1= ' + para[1]); }
+    if (count == 2){
+        if (para[1] == para[2]){
+            console.log('равно');
+            result++;
+            console.log(result);
+            allPic.elements[prew[1]].style.color="#FFF";
+            allPic.elements[prew[1]].style.backgroundColor="#FF0000";
+            allPic.elements[prew[2]].style.color="#FFF";
+            allPic.elements[prew[2]].style.backgroundColor="#FF0000";
+         }else{
+            console.log('не равно');
+
+            function f(){
+                allPic.elements[prew[1]].style.color="#999";
+                allPic.elements[prew[1]].style.backgroundColor="#999";
+                allPic.elements[prew[2]].style.color="#999";
+                allPic.elements[prew[2]].style.backgroundColor="#999"; }
+            f();
+         }
+        count = 0;
+        para[1]=-1;
+        para[2]=-1;
+    }
+    if (result == 10){
+        allPic.elements.finish.type="text";}
+
+
+}
+
+</script>
+</body>
+
+</html>

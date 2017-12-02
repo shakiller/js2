@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		form{
+			width:300px;
+			display:flex;
+			flex-wrap:wrap;
+		}
+		input.click{
+			width:30px;
+			height:30px;
+			border:none;
+			outline:outset 5px hsla(0, 0% ,50%, 0.5);
+			outline-offset:-5px;
+		}
+		input.click:active{
+			outline:inset 5px hsla(0, 0% ,50%, 0.5);
+		}
+	</style>
+
+</head>
+<body>
+
+<form name="plitka">
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+		<input class="click" type="button" name="" value="" onclick()>
+</form>
+<script type="text/javascript">
+	var plitka = document.forms.plitka;
+    var plitkaItem = [];
+    var x=1;
+    var y=1;
+    var plitkaArr = [];
+    var colorItems;
+    var i=0;
+	while(i<=plitka.length-1){
+
+    for( x = 1;x<=10;x++){
+       var colorRandom = Math.floor(Math.random(1)*3)+'';
+
+        switch (colorRandom) {
+            case '0':
+                colorItems = '#ff0000';
+                break;
+            case '1':
+                colorItems = '#00ff00';
+                break;
+            default:
+                colorItems = '#0000ff';
+                break;
+        }
+
+        plitka.elements[i].style.backgroundColor=colorItems;
+        plitkaArr[i] = [x,y,colorItems];
+        console.log(plitkaArr[i]);
+        i++;
+         }
+         x=1;
+         y++;
+    }
+
+    function clickit(){
+
+
+    }
+
+</script>
+
+
+
+</body>
+</html>
+
+

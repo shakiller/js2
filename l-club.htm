@@ -12,13 +12,11 @@
       color:#999;
       background-color: #999;
       font-size:2em;
-
   }
   input:focus{
       color:#000;
       background-color: #999;
   }
-
  form{
       display: flex;
       flex-wrap: wrap;
@@ -29,7 +27,6 @@
       order:20;
       color:red;
   }
-
   </style>
 </head>
 
@@ -66,6 +63,8 @@ var arrPic = [];
 var count = 0;
 var result = 0;
 var para = [];
+var timeout = false;
+
 para[1]=-1;
 para[2]=-1;
 var prew=[];
@@ -75,13 +74,14 @@ for(var i=0;i<=allPic.length-2;i++){
     allPic.elements[i].style.cssText=orderI;
     arrPic[i] = allPic.elements[i].value;
 }
-
 function openit(i){
+    if(timeout){
+      return;
+    }
     allPic.elements[i].style.color="#000";
     allPic.elements[i].style.backgroundColor="#fff";
     console.log('p1 ' + para[1] + ' p2 ' +  para[2]);
     count++;
-
     if ((para[1] != -1)&&(para[2] == -1)){
         para[2] = allPic.elements[i].value;
         prew[1] = i;
@@ -101,13 +101,15 @@ function openit(i){
             allPic.elements[prew[2]].style.backgroundColor="#FF0000";
          }else{
             console.log('не равно');
-
+            timeout = true;
+            setTimeout(f, 1000);
             function f(){
                 allPic.elements[prew[1]].style.color="#999";
                 allPic.elements[prew[1]].style.backgroundColor="#999";
                 allPic.elements[prew[2]].style.color="#999";
-                allPic.elements[prew[2]].style.backgroundColor="#999"; }
-            f();
+                allPic.elements[prew[2]].style.backgroundColor="#999"; 
+                timeout = false;
+            }
          }
         count = 0;
         para[1]=-1;
@@ -115,10 +117,7 @@ function openit(i){
     }
     if (result == 10){
         allPic.elements.finish.type="text";}
-
-
 }
-
 </script>
 </body>
 

@@ -111,8 +111,9 @@
                 break;
         }
         value = y +'|' + x ;
+        plitka.elements[i].value=i;
         plitka.elements[i].style.backgroundColor=colorItems;
-        plitka.elements[i].title=colorItems+' '+value;
+        plitka.elements[i].title=colorItems+' '+value+ ' '+i;
         var clickitString = 'clickit('+y+','+x+','+i+ ')';
         plitka.elements[i].setAttribute('onclick',clickitString);
        // plitka.elements[i].value=value;
@@ -133,39 +134,50 @@
     }
     console.log('массив ' + plitkaArr);
     function clickit(y,x,numberElements){
-
          var searchColor = plitkaArr[y][x];
-         console.log(searchColor);
          addItemsColor(searchColor);
          function addItemsColor(searchColor){
-             //plitkaArr[y][x] = true;
-             if(plitkaArr[y][x]){
-                if((plitkaArr[y-1][x])&&(plitkaArr[y-1][x]==searchColor)){
-                    console.log("up");
-                    killArr.push(numberElements);
-                    y=y-1;
-                    clickit(y,x,numberElements)
-                    }
-                if((plitkaArr[y+1][x])&&(plitkaArr[y+1][x]==searchColor)){
-                    console.log("down");
-                    killArr.push(numberElements);
-                    y=y+1;
-                    clickit(y,x,numberElements)
-                    };
-                if((plitkaArr[y][x-1])&&(plitkaArr[y][x-1]==searchColor)){
-                    console.log("left");
-                    killArr.push(numberElements);
-                    x=x-1;
-                    clickit(y,x,numberElements)};
-                if((plitkaArr[y][x+1])&&(plitkaArr[y][x+1]==searchColor)){
-                    console.log("right");
-                    killArr.push(numberElements);
-                    x=x+1;
-                    clickit(y,x,numberElements)};
 
-         }
+                var Yu=y-1;
+                var Yd=y+1;
+                var Xl=x-1;
+                var Xr=x+1;
+
+                console.log(Yu+' '+Yd+' '+Xl+' '+Xr);
+                if((Yu>=0)&&(numberElements!=killArr[killArr.length-1])){
+                    if((plitkaArr[Yu][x]==searchColor)){
+                        console.log("up");
+                        killArr.push(numberElements-10);
+                        clickit(Yu,x,numberElements-10)
+                        }
+                    }
+                if((Yd<height)&&(numberElements!=killArr[killArr.length-1])){
+                    if((plitkaArr[Yd][x]==searchColor)){
+                        console.log("down");
+                        killArr.push(numberElements+10);
+                        clickit(Yd,x,numberElements+10)
+                        }
+                    }
+                if((Xl>=0)&&(numberElements!=killArr[killArr.length-1])){
+                    if((plitkaArr[y][Xl]==searchColor)){
+                        console.log("left");
+                        killArr.push(numberElements-1);
+                        clickit(y,Xl,numberElements-1)
+                        }
+                    }
+                if((Xl<10)&&(numberElements!=killArr[killArr.length-1])){
+                    if((plitkaArr[y][Xr]==searchColor)){
+                        console.log("right");
+                        killArr.push(numberElements+1);
+                        clickit(y,Xr,numberElements+1)
+                        }
+                    }
+
+    killArr.push(numberElements);
     }
-    return (numberElements);
+    console.log( killArr);
+
+    return (killArr);
     }
 </script>
 
@@ -173,4 +185,3 @@
 
 </body>
 </html>
-

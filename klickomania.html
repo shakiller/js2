@@ -116,68 +116,66 @@
         plitka.elements[i].title=colorItems+' '+value+ ' '+i;
         var clickitString = 'clickit('+y+','+x+','+i+ ')';
         plitka.elements[i].setAttribute('onclick',clickitString);
-       // plitka.elements[i].value=value;
-
-
         plitkaArr[y].push(colorItems);
-        console.log(colorItems);
-        console.log(y+' '+ x + ' ' +plitkaArr[y][x]);
         i++;
          }
          y++;
     }
     var height = y;
-    for( y = 0;y<height;y++){
-       for( x = 0;x<10;x++){
-         console.log(y+' '+ x + ' ' +plitkaArr[y][x]);
-       }
-    }
     console.log('массив ' + plitkaArr);
     function clickit(y,x,numberElements){
          var searchColor = plitkaArr[y][x];
          addItemsColor(searchColor);
          function addItemsColor(searchColor){
-
+                      console.log('! ')
                 var Yu=y-1;
                 var Yd=y+1;
                 var Xl=x-1;
                 var Xr=x+1;
-
-                console.log(Yu+' '+Yd+' '+Xl+' '+Xr);
-                if((Yu>=0)&&(numberElements!=killArr[killArr.length-1])){
+                if((Yu>=0)){
                     if((plitkaArr[Yu][x]==searchColor)){
                         console.log("up");
+                        plitkaArr[y][x]="#000000";
+
                         killArr.push(numberElements-10);
                         clickit(Yu,x,numberElements-10)
                         }
                     }
-                if((Yd<height)&&(numberElements!=killArr[killArr.length-1])){
+                if((Yd<height)){
                     if((plitkaArr[Yd][x]==searchColor)){
                         console.log("down");
+                        plitkaArr[y][x]="#000000";
+
                         killArr.push(numberElements+10);
                         clickit(Yd,x,numberElements+10)
                         }
                     }
-                if((Xl>=0)&&(numberElements!=killArr[killArr.length-1])){
+                if((Xl>=0)){
                     if((plitkaArr[y][Xl]==searchColor)){
                         console.log("left");
+                        plitkaArr[y][x]="#000000";
+
                         killArr.push(numberElements-1);
                         clickit(y,Xl,numberElements-1)
                         }
                     }
-                if((Xl<10)&&(numberElements!=killArr[killArr.length-1])){
+                if((Xl<10)){
                     if((plitkaArr[y][Xr]==searchColor)){
                         console.log("right");
+                        plitkaArr[y][x]="#000000";
+
                         killArr.push(numberElements+1);
                         clickit(y,Xr,numberElements+1)
                         }
                     }
 
     killArr.push(numberElements);
-    }
-    console.log( killArr);
 
-    return (killArr);
+    }
+    console.log(killArr);
+    for(i = 0;i<killArr.length;i++) {plitka.elements[killArr[i]].style.backgroundColor="#fff"; }
+    killArr=[];
+    //return (killArr);
     }
 </script>
 

@@ -8,6 +8,8 @@
             width:300px;
             display:flex;
             flex-wrap:wrap;
+            margin: auto;
+            transform: scale(2) translateY(50%);
         }
         input.clock{
             width:30px;
@@ -124,6 +126,7 @@
     var height = y;
     console.log('массив ' + plitkaArr);
     function clickit(y,x,numberElements){
+        if (plitkaArr[y][x]!="#000000"){
         killArr.push(numberElements);
          var searchColor = plitkaArr[y][x];
          addItemsColor(searchColor);
@@ -171,14 +174,38 @@
                     }
 
 
-
+     plitkaArr[y][x]="#000000";
     }
-    console.log('killArr '+killArr);
-    if(killArr.length>1){for(i = 0;i<killArr.length;i++) {plitka.elements[killArr[i]].style.backgroundColor="#fff"; }
+
+    if(killArr.length>1){for(i = 0;i<killArr.length;i++) {plitka.elements[killArr[i]].style.backgroundColor="#fff"; };
     }
     killArr=[];
     //return (killArr);
     }
+
+    }
+    pressDown(plitkaArr);
+    function pressDown(plitkaArr){
+     for( x = 0;x<10;x++){
+        for( y = height-1;y>1;y--){
+          if (plitkaArr[y][x]=="#000000") {
+          for( var count = 1;count<height;count++){dropDown(y,x); }
+          function dropDown(y,x){
+                var y2=y;
+              for(var y1 =y2-1;y1>=0;y1 = y1-1){
+                plitkaArr[y2][x] = plitkaArr[y1][x];
+                console.log(y2+''+x+' '+y1+''+x);
+                console.log('1 '+y2+x + ' ' +plitka.elements[parseInt(y2+''+x, 10)].style.backgroundColor);
+                plitka.elements[parseInt(y2+''+x, 10)].style.backgroundColor=plitka.elements[parseInt(y1+''+x, 10)].style.backgroundColor;
+                console.log('2 '+y2+x + ' ' +plitka.elements[parseInt(y2+''+x, 10)].style.backgroundColor);
+                y2=y2-1;
+              }
+            }
+          }
+        }
+      }
+    }
+
 </script>
 
 

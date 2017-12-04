@@ -124,6 +124,7 @@
     var height = y;
     console.log('массив ' + plitkaArr);
     function clickit(y,x,numberElements){
+        killArr.push(numberElements);
          var searchColor = plitkaArr[y][x];
          addItemsColor(searchColor);
          function addItemsColor(searchColor){
@@ -169,11 +170,12 @@
                         }
                     }
 
-    killArr.push(numberElements);
+
 
     }
-    console.log(killArr);
-    for(i = 0;i<killArr.length;i++) {plitka.elements[killArr[i]].style.backgroundColor="#fff"; }
+    console.log('killArr '+killArr);
+    if(killArr.length>1){for(i = 0;i<killArr.length;i++) {plitka.elements[killArr[i]].style.backgroundColor="#fff"; }
+    }
     killArr=[];
     //return (killArr);
     }

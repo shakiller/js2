@@ -5,91 +5,61 @@
     <title>Document</title>
 </head>
 <body>
+  <input name="enterChislo" id="enterChislo"  onkeypress="runScript(event)">
+   <p class="log"></p>
     <script>
         var chislo = Math.floor(Math.random()*8999)+1000;
-        console.log(chislo);
-        
-do{    
-    do {
-        var search = prompt(chislo + ' 4-х значное число','');
-        //if (search = ' '){bik=99; console.log('out');break outer;}
-        if ((search > 10000) && (search < 999))  {console.log('ещё разок');}/*почему не отрабатывает*/
-        
-        }
-        while ((search > 10000)||(search < 999))
-        
-        console.log(search);
-        var bik = 0;//счётчик быков
-        var korova = 0;//счётчик коров
-        var bikok;//окончание
-        var korovaok;//окончание
+        var search;
+        function runScript(e) {
+    if (e.keyCode == 13) {
+        search = parseInt(document.getElementById("enterChislo").value);
+        if (isNaN(search)){search = 0};
+        if ((search > 10000) || (search < 999))  {
+            console.log('ещё разок');
+            document.getElementById("enterChislo").value = '';
+            document.body.querySelector('.log').innerHTML='ещё разок';
+        }else{
+     sravnenie(chislo,search);   
+    }
+    } else{return false;}
     
-    
-    
-                    var proverka = function(chislo,search){
-                        chislo = chislo + '';
+}
+        
+function sravnenie(chislo,search){    
+       var bik = 0;
+       var korova = 0;
+    debugger;
+            var proverka = function(chislo,search){
+                        chislo = chislo+'';
                         search = search + ''
                         var chisloArr = chislo.split('');
                         var searchArr = search.split('');    
-                        
                         for( var i = 0 ; i < 4 ; i++){
-
                             if (chisloArr[i] === searchArr[i]){
                                 bik++;
-                                chisloArr[i] = NaN;
-                                searchArr[i] = NaN;
+                                chisloArr[i]=NaN;
+                                searchArr[i]=NaN;
                             }
 
                             for( var j = 0; j < 4; j++ ){
-
-                                if (j == i){continue}
+                                if (j==i){continue}
                                 if(chisloArr[i] === searchArr[j]){
                                     korova++;
-                                    chisloArr[i] = NaN;
-                                    searchArr[j] = NaN;
+                                    chisloArr[i]=NaN;
+                                    searchArr[j]=NaN;
                                 }
                             }
                         }
                         return(bik,korova);
                     }
     
-                    
-                    
-                    
-    
     proverka(chislo,search);
-
-    //окончания
-    switch(bik) {
-          case 0:  
-            bikok='оff';
-            break;
-          case 1: 
-            bikok='';
-            break;
-          default:
-            bikok='а';
-
-          }
-
-    switch(korova) {
-         case 0:  
-            korovaok='';
-            break;
-          case 1:  
-            korovaok='а';
-            break;
-          default:
-            korovaok='ы';
-
-          }
+    console.log('+');
+    document.body.querySelector('.log').innerHTML =(bik + ' быков ' + korova + ' коров ');
+    console.log('++');
+    if(bik==4){document.body.querySelector('.log').innerHTML='агась'}
+}
     
-
-    console.log(bik + ' бык'+bikok+' ' + korova + ' коров'+ korovaok);
-    if(bik == 4){console.log('агась')}
-   // if(bik == 99){console.log('хренась');bik=4;}
-} while(bik!= 4)
-  
     </script>
 </body>
 </html> 

@@ -83,7 +83,7 @@
         <input type="button" class="clock" name="" value="" onclick="clickit(48)">
         <input type="button" class="clock" name="" value="" onclick="clickit(49)">
     </form>
-    <button onclick=" pressDown(plitkaArr)">dropDown</button>
+    
     <script type="text/javascript">
         var plitka = document.forms.plitka;
         var plitkaItem = [];
@@ -131,7 +131,6 @@
             y++;
         }
         var height = y;
-        console.log('массив ' + plitkaArr);
 
         function clickit(y, x, numberElements) {
             searchPlitka(y, x, numberElements);
@@ -147,13 +146,14 @@
                     var Yd = y + 1;
                     var Xl = x - 1;
                     var Xr = x + 1;
+                    
                     if ((Yu >= 0)) {
                         if ((plitkaArr[Yu][x] == searchColor)) {
                             console.log("up");
                             plitkaArr[y][x] = "#000000";
 
                             killArr.push(numberElements - 10);
-                            clickit(Yu, x, numberElements - 10)
+                            searchPlitka(Yu, x, numberElements - 10)
                         }
                     }
                     if ((Yd < height)) {
@@ -162,7 +162,7 @@
                             plitkaArr[y][x] = "#000000";
 
                             killArr.push(numberElements + 10);
-                            clickit(Yd, x, numberElements + 10)
+                            searchPlitka(Yd, x, numberElements + 10)
                         }
                     }
                     if ((Xl >= 0)) {
@@ -171,7 +171,7 @@
                             plitkaArr[y][x] = "#000000";
 
                             killArr.push(numberElements - 1);
-                            clickit(y, Xl, numberElements - 1)
+                            searchPlitka(y, Xl, numberElements - 1)
                         }
                     }
                     if ((Xl < 10)) {
@@ -180,50 +180,51 @@
                             plitkaArr[y][x] = "#000000";
 
                             killArr.push(numberElements + 1);
-                            clickit(y, Xr, numberElements + 1)
+                            searchPlitka(y, Xr, numberElements + 1)
                         }
                     }
 
 
                     plitkaArr[y][x] = "#000000";
-                }
+                } //end addItemsColor()
 
                 if (killArr.length > 1) {
                     for (i = 0; i < killArr.length; i++) {
+                        console.log(killArr);
                         plitka.elements[killArr[i]].style.backgroundColor = "#fff";
+                        plitka.elements[killArr[i]].title = "#fff" + ' ' + value + ' ' + killArr[i];
                     };
                 }
-                killArr = [];
-                //return (killArr);
+                
 
-            }
+            } //end if plitkaArr
 
-        }
-        //pressDown(plitkaArr);
+        } //end searchPlitka
+        if((killArr.length > 1)){pressDown(plitkaArr);killArr = [];}
         return;
-        }
+        } //end clickit()
 
         function pressDown(plitkaArr) {
-
+            console.log('pressDown');
             for (x = 0; x < 10; x++) {
                 for (y = height - 1; y > 1; y--) {
                     for (var count = 1; count < height; count++) {
                          if (plitkaArr[y][x] == "#000000"){
                             dropDown(y, x);
                         }
-
                         function dropDown(y, x) {
+                            console.log('dropDown');
                             var y2 = y;
                             for (var y1 = y2 - 1; y1 >= 0; y1 = y1 - 1) {
-                                //debugger;
                                 plitkaArr[y2][x] = plitkaArr[y1][x];
-                                console.log(y2 + '' + x + ' ' + y1 + '' + x);
-                                console.log('1 ' + y2 + x + ' ' + plitka.elements[parseInt(y2 + '' + x, 10)].style.backgroundColor);
+
+
                                 plitka.elements[parseInt(y2 + '' + x, 10)].style.backgroundColor = plitka.elements[parseInt(y1 + '' + x, 10)].style.backgroundColor;
-                                console.log('2 ' + y2 + x + ' ' + plitka.elements[parseInt(y2 + '' + x, 10)].style.backgroundColor);
+
                                 y2 = y2 - 1;
                             }
                             plitka.elements[parseInt(0 + '' + x, 10)].style.backgroundColor="#fff";
+                            plitkaArr[0][x]="#000000";
                         }
                     }
                 }

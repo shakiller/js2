@@ -4,14 +4,43 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-        textarea{height:200px;
-        display:block;}
+        @import url('https://fonts.googleapis.com/css?family=Neucha&subset=cyrillic');
+        textarea{
+            height:500px;
+            width:100%;
+            resize: vertical;
+            padding:5px;
+            display:block;
+            font-size: inherit;
+            background: transparent;
+            box-sizing: border-box;
+         font-family: 'Neucha', cursive;}
+        #enterChislo{
+            padding:5px;
+            width:100%;
+            font-size: inherit;
+            background: transparent;
+            box-sizing: border-box;
+             font-family: 'Neucha', cursive;
+        }
+        .game{
+            margin:auto;
+            max-width:400px;
+            background-color: antiquewhite;
+            color:brown;
+            font-family: 'Neucha', cursive;
+            font-size: 2em;
+            
+        }
     </style>
 </head>
-<body>
-  <input name="enterChislo" id="enterChislo" >
+<body><div class="game">
+ <div>
+  <input name="enterChislo" id="enterChislo" autofocus>
   <input type="submit" value="Submit" onclick="runScript()">
-    <textarea id="log"></textarea>
+    <textarea id="log" readonly></textarea>
+    </div>
+    </div>
     <script>
         var chislo = Math.floor(Math.random()*8999)+1000;
         var search;
@@ -35,6 +64,8 @@
 function sravnenie(chislo,search){    
        var bik = 0;
        var korova = 0;
+       var bikok;//окончание
+       var korovaok;//окончание
 
             var proverka = function(chislo,search){
                         chislo = chislo+'';
@@ -61,8 +92,37 @@ function sravnenie(chislo,search){
                     }
     
     proverka(chislo,search);
+        //окончания
+     switch(bik) {
+          case 0:  // if (x === 'value1')
+          case 0:  
+             bikok='оff';
+             break;
+          case 1:  // if (x === 'value1')
+          case 1: 
+             bikok='';
+             break;
+           default:
+             bikok='а';
+ 
+           }
+
+
+     switch(korova) {
+         case 0:  // if (x === 'value1')
+         case 0:  
+             korovaok='';
+             break;
+          case 1:  // if (x === 'value1')
+          case 1:  
+             korovaok='а';
+             break;
+           default:
+             korovaok='ы';
+ 
+           }
     console.log('+');
-    log=log+search+'\n'+bik + ' быков ' + korova + ' коров ' + '\n';
+    log=log+search+'\n'+bik + ' бык'+bikok+' ' + korova + ' коров'+ korovaok + '\n';
     document.getElementById('log').value =log;
     console.log('++');
     if(bik==4){log=log+'агась';document.getElementById('log').value=log;}

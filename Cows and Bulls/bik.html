@@ -5,13 +5,14 @@
     <title>Document</title>
 </head>
 <body>
-  <input name="enterChislo" id="enterChislo"  onkeypress="runScript(event)">
+  <input name="enterChislo" id="enterChislo" >
+  <input type="submit" value="Submit" onclick="runScript()">
    <p class="log"></p>
     <script>
         var chislo = Math.floor(Math.random()*8999)+1000;
         var search;
-        function runScript(e) {
-    if (e.keyCode == 13) {
+        function runScript() {
+ 
         search = parseInt(document.getElementById("enterChislo").value);
         if (isNaN(search)){search = 0};
         if ((search > 10000) || (search < 999))  {
@@ -21,14 +22,14 @@
         }else{
      sravnenie(chislo,search);   
     }
-    } else{return false;}
+   
     
 }
         
 function sravnenie(chislo,search){    
        var bik = 0;
        var korova = 0;
-    debugger;
+
             var proverka = function(chislo,search){
                         chislo = chislo+'';
                         search = search + ''

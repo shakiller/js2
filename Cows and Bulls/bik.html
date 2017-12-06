@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        textarea{height:200px;
+        display:block;}
+    </style>
 </head>
 <body>
   <input name="enterChislo" id="enterChislo" >
   <input type="submit" value="Submit" onclick="runScript()">
-   <p class="log"></p>
+    <textarea id="log"></textarea>
     <script>
         var chislo = Math.floor(Math.random()*8999)+1000;
         var search;
+        var log='';
         function runScript() {
  
         search = parseInt(document.getElementById("enterChislo").value);
@@ -18,7 +23,8 @@
         if ((search > 10000) || (search < 999))  {
             console.log('ещё разок');
             document.getElementById("enterChislo").value = '';
-            document.body.querySelector('.log').innerHTML='ещё разок';
+            log=log+'ещёразок'+'\n';
+            document.getElementById('log').value=log;
         }else{
      sravnenie(chislo,search);   
     }
@@ -56,9 +62,10 @@ function sravnenie(chislo,search){
     
     proverka(chislo,search);
     console.log('+');
-    document.body.querySelector('.log').innerHTML =(bik + ' быков ' + korova + ' коров ');
+    log=log+search+'\n'+bik + ' быков ' + korova + ' коров ' + '\n';
+    document.getElementById('log').value =log;
     console.log('++');
-    if(bik==4){document.body.querySelector('.log').innerHTML='агась'}
+    if(bik==4){log=log+'агась';document.getElementById('log').value=log;}
 }
     
     </script>

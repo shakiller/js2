@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head>ac
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
         td{border:solid 1px red;}
+        .green{background: green;
+        color:white;}
     </style>
 </head>
 <body>
@@ -24,8 +26,14 @@ function createTable() {
 
   for (i=1; i <= tabX; i++) {
     rowEl = tableEl.insertRow();  
+      
       for (j=1; j <= tabY; j++) {
-    rowEl.insertCell().textContent = i * j ;      
+          
+    
+          celEl = rowEl.insertCell();
+          celEl.textContent = i * j ;
+          if((j==1)||(i==1)){celEl.className="green";}
+          celEl.setAttribute(onclick,"setcolor(green)")
      
   }}
   document.body.appendChild( tableEl);

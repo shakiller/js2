@@ -5,40 +5,52 @@
     <title>Document</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Neucha&subset=cyrillic');
+        h1{text-align: center}
         textarea{
             height:500px;
             width:100%;
-            resize: vertical;
-            padding:5px;
+            resize:none;
+            padding:20px 5px 5px;
+            border:none;
             display:block;
             font-size: inherit;
             background: transparent;
             box-sizing: border-box;
-         font-family: 'Neucha', cursive;}
+            font-family: 'Neucha', cursive;
+            overflow: hidden;
+            font-size: 1.4em;}
         #enterChislo{
             padding:5px;
             width:100%;
             font-size: inherit;
             background: transparent;
             box-sizing: border-box;
-             font-family: 'Neucha', cursive;
+            font-family: 'Neucha', cursive;
+            font-size: 2em;
+            border:none;
+            border-radius:5px;
         }
+        #enterChislo:focus{outline:none;
+        box-shadow: inset 0 0 5px 1px black;}
         .game{
             margin:auto;
             max-width:400px;
             background-color: antiquewhite;
             color:brown;
             font-family: 'Neucha', cursive;
-            font-size: 2em;
+            
             
         }
     </style>
 </head>
 <body><div class="game">
- <div>
+ <div><h1>БЫКИ и КОРОВЫ</h1>
+     <form onsubmit=" return runScript()">
   <input name="enterChislo" id="enterChislo" autofocus>
-  <input type="submit" value="Submit" onclick="runScript()">
-    <textarea id="log" readonly></textarea>
+  <input type="submit" value="Submit" style="display:none;">
+    <textarea id="log" readonly disabled></textarea>
+         <button onclick="show(chislo)">show</button>
+         </form>
     </div>
     </div>
     <script>
@@ -55,12 +67,17 @@
             log=log+'ещёразок'+'\n';
             document.getElementById('log').value=log;
         }else{
-     sravnenie(chislo,search);   
+     sravnenie(chislo,search); 
+            document.getElementById("enterChislo").value='';
+            return false;
     }
    
     
 }
-        
+ function show(chislo){
+     
+    log=log+chislo;document.getElementById('log').value=log; 
+ }       
 function sravnenie(chislo,search){    
        var bik = 0;
        var korova = 0;
@@ -122,10 +139,11 @@ function sravnenie(chislo,search){
  
            }
     console.log('+');
-    log=log+search+'\n'+bik + ' бык'+bikok+' ' + korova + ' коров'+ korovaok + '\n';
+    log=log+search+'----'+bik + ' бык'+bikok+' ' + korova + ' коров'+ korovaok + '\n';
     document.getElementById('log').value =log;
     console.log('++');
     if(bik==4){log=log+'агась';document.getElementById('log').value=log;}
+    document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight
 }
     
     </script>

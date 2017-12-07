@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        td{border:solid 1px red;}
+    </style>
+</head>
+<body>
+        <input type="number" name="x">
+        <input type="number" name="y">
+           <p onclick="createTable()">+</p>
+            <script>
+
+            
+        
+   
+function createTable() {
+    var tabX=document.querySelector('input[name="x"]').value;   
+        var tabY=document.querySelector('input[name="y"]').value;
+  var i=0, rowEl=null,
+      tableEl = document.createElement("table");
+
+  for (i=1; i <= tabX; i++) {
+    rowEl = tableEl.insertRow();  
+      for (j=1; j <= tabY; j++) {
+    rowEl.insertCell().textContent = i * j ;      
+     
+  }}
+  document.body.appendChild( tableEl);
+}
+    
+    
+    
+    
+    </script>
+    
+</body>
+</html>

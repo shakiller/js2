@@ -6,7 +6,7 @@
     <title>Document</title>
     <style>
         td {
-            border: solid 1px red;
+            border: solid 1px #636363;
         }
 
         .green {
@@ -43,10 +43,12 @@
 </head>
 
 <body>
-    <input type="number" name="x">
-    <input type="number" name="y">
+    <form onsubmit="return createTable()">
+    <input type="number" name="x" value=5>
+    <input type="number" name="y" value=5 autofocus>
     <input type="color" name="color" value="#f223aa">
-    <p onclick="createTable()">go</p>
+    <input type="submit">
+        </form>
     <script>
         function createTable() {
             
@@ -75,6 +77,7 @@
                 }
             }
             document.body.appendChild(tableEl);
+            return false;
         }
 
     </script>

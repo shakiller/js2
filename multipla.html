@@ -26,78 +26,16 @@
             arrColor[0]=parseInt(arrColor[0],16);
             arrColor[1]=parseInt(arrColor[1],16);
             arrColor[2]=parseInt(arrColor[2],16);
-            rgbToHsl(arrColor[0],arrColor[1],arrColor[2]);
-            
-            
-            
-            
-//            function rgbToHsl(r, g, b) {
-//                debugger;
-//                console.log('rgb '+r+' '+ g+' ' + b);
-//                var max = Math.max(r, g, b);
-//                console.log('max' +max);
-//                var min = Math.min(r, g, b);
-//                console.log('min'+min);
-//                var h = (max + min) / 2;
-//                var s = (max + min) / 2;
-//                var l = (max + min) / 2;
-//                var arrHsl=[];
-//                console.log(h+' '+s+' '+l);
-//                if (max == min) {
-//                    h = s = 0; // achromatic
-//                } else {
-//                    var d = max - min;
-//                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
-//                    switch (max) {
-//                        case r:
-//                            h = (g - b) / d + (g < b ? 6 : 0);
-//                            break;
-//                        case g:
-//                            h = (b - r) / d + 2;
-//                            break;
-//                        case b:
-//                            h = (r - g) / d + 4;
-//                            break;
-//                    }
-//                    h /= 6;
-//                }
-//                
-//                arrHsl[0]=h;
-//                arrHsl[1]=s;
-//                arrHsl[2]=l;
-//                console.log(arrHsl);
-//                return arrHsl;
-//            }
-            function rgbToHsl(r, g, b) {
-	var
-	min = Math.min(r, g, b),
-	max = Math.max(r, g, b),
-	diff = max - min, 
-    
-	h = 0, s = 0, l = (min + max) / 2;
-
-	if (diff != 0) {
-		s = l < 0.5 ? diff / (max + min) : diff / (2 - max - min);
-
-		h = (r == max ? (g - b) / diff : g == max ? 2 + (b - r) / diff : 4 + (r - g) / diff) * 60;
-	}
-
-	            arrHsl[0]=h;
-                arrHsl[1]=s;
-                arrHsl[2]=l;
-                console.log(arrHsl);
-                return arrHsl;
-}
-            
-            
-            
-            
-            
-            
-            
-            
-            bkgColor = 'hsl('+arrHsl[0]+','+arrHsl[1]+'%,'+arrHsl[2]+'%'+')';
-            console.log(bkgColor);
+            arrColor[0]=255-Math.abs(arrColor[0]);
+            arrColor[1]=255-Math.abs(arrColor[1]);
+            arrColor[2]=255-Math.abs(arrColor[2]);
+            if((arrColor[0]>110)&&(arrColor[0]<140)&&(arrColor[1]>110)&&(arrColor[1]<140)&&(arrColor[2]>110)&&(arrColor[2]<140)){
+            arrColor[0]=140-Math.abs(arrColor[0]);
+            arrColor[1]=140-Math.abs(arrColor[1]);
+            arrColor[2]=140-Math.abs(arrColor[2]);    
+                
+            }
+            bkgColor='rgb('+arrColor[0]+','+arrColor[1]+','+arrColor[2]+')'
             return bkgColor;
         }
 
@@ -111,12 +49,12 @@
     <p onclick="createTable()">go</p>
     <script>
         function createTable() {
-            bkgColor1 = swithColor(userColor);
+            
             var tabX = document.querySelector('input[name="x"]').value;
             var tabY = document.querySelector('input[name="y"]').value;
             var userColor=document.querySelector('input[name="color"]').value;
             var bkgColor;
-        
+            var bkgColor1 = swithColor(userColor);
             var i = 0,
                 rowEl = null,
                 tableEl = document.createElement("table");

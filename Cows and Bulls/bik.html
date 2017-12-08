@@ -83,7 +83,6 @@ function sravnenie(chislo,search){
        var korova = 0;
        var bikok;//окончание
        var korovaok;//окончание
-
             var proverka = function(chislo,search){
                         chislo = chislo+'';
                         search = search + ''
@@ -94,8 +93,8 @@ function sravnenie(chislo,search){
                                 bik++;
                                 chisloArr[i]=NaN;
                                 searchArr[i]=NaN;
-                            }
-
+                            }}
+                        for( var i = 0 ; i < 4 ; i++){
                             for( var j = 0; j < 4; j++ ){
                                 if (j==i){continue}
                                 if(chisloArr[i] === searchArr[j]){
@@ -123,8 +122,6 @@ function sravnenie(chislo,search){
              bikok='а';
  
            }
-
-
      switch(korova) {
          case 0:  // if (x === 'value1')
          case 0:  

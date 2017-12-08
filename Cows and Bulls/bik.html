@@ -3,33 +3,42 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>игра: Быки и Коровы</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Neucha&subset=cyrillic');
         h1 {
-              text-align: center;
-              background: linear-gradient(brown, red);  /* подробнее про градиенты */ 
-              -webkit-background-clip: text;  /* подробнее про background-clip */ 
-              color: transparent;
+            text-align: center;
+            background: linear-gradient(brown, red);
+            /* подробнее про градиенты */
+            -webkit-background-clip: text;
+            /* подробнее про background-clip */
+            color: transparent;
         }
 
-        textarea {
+        #log {
             height: 500px;
             width: 100%;
             resize: none;
             padding: 20px 5px 5px;
             border: none;
             display: block;
-            font-size: inherit;        
+            font-size: inherit;
             color: brown;
             box-sizing: border-box;
             font-family: 'Neucha', cursive;
             overflow: hidden;
             font-size: 1.4em;
             background: transparent;
+            background: linear-gradient(to right, #342aa5, red);
+            /* подробнее про градиенты */
+            -webkit-background-clip: text;
+            /* подробнее про background-clip */
+            color: transparent;
+
         }
 
-        #enterChislo,button {
+        #enterChislo,
+        button {
             background: transparent;
             padding: 5px;
             width: 100%;
@@ -53,44 +62,82 @@
             max-width: 400px;
             background-color: antiquewhite;
             font-family: 'Neucha', cursive;
-            padding-top:1px;
+            padding-top: 1px;
 
 
         }
-        button:focus{outline:none;}
+
+        button:focus {
+            outline: none;
+        }
+
+        #timerWindow {
+            position: absolute;
+            font-size: 0.5em;
+            padding: 0 3em;
+            color: black;
+        }
+
     </style>
+    <script>
+        // начать повторы с интервалом 2 сек
+        var timerId = setInterval(function() {
+            timer();
+        }, 1000);
+
+        // через 5 сек остановить повторы
+        setTimeout(function() {
+            clearInterval(timerId);
+            alert('[хватить]');
+        }, 500000000);
+
+    </script>
 </head>
 
 <body>
-   
-   
-   
-   
-   
-   
+
+
+
+
+
+
     <div class="game">
         <div>
-            <h1>БЫКИ и КОРОВЫ</h1>
+            <h1>БЫКИ и КОРОВЫ <span id="timerWindow"></span></h1>
             <form onsubmit=" return runScript()">
                 <input name="enterChislo" id="enterChislo" autofocus>
                 <input type="submit" value="Submit" style="display:none;">
-                <textarea id="log" readonly disabled></textarea>
+                <pre id="log"></pre>
                 <button onclick="show(chislo)">показать число</button>
             </form>
         </div>
     </div>
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
     <script>
         var chislo = Math.floor(Math.random() * 8999) + 1000;
         var search;
         var log = '';
+        var timeSecond = 0;
+        var timerV = document.getElementById('timerWindow');
+
+        function time() {
+            setTimeout(timer(), 1000)
+        }
+        time();
+
+        function timer() {
+
+            timerV.textContent = timeSecond;
+            timeSecond++;
+
+        }
 
         function runScript() {
 
@@ -102,11 +149,11 @@
                 console.log('ещё разок');
                 document.getElementById("enterChislo").value = '';
                 log = log + 'ещёразок' + '\n';
-                document.getElementById('log').value = log;
+                document.getElementById('log').textContent = log;
             } else {
                 sravnenie(chislo, search);
                 document.getElementById("enterChislo").value = '';
-               
+
             }
 
             return false;
@@ -115,7 +162,7 @@
         function show(chislo) {
 
             log = log + chislo;
-            document.getElementById('log').value = log;
+            document.getElementById('log').textContent = log;
         }
 
         function sravnenie(chislo, search) {
@@ -179,15 +226,16 @@
 
             }
             console.log('+');
-            log = log + search + '----' + bik + ' бык' + bikok + ' ' + korova + ' коров' + korovaok + '\n';
-            document.getElementById('log').value = log;
+            log = log + search + '\n' + bik + ' бык' + bikok + ' ' + korova + ' коров' + korovaok + '\n';
+            document.getElementById('log').textContent = log;
             console.log('++');
             if (bik == 4) {
                 log = log + 'агась';
-                document.getElementById('log').value = log;
+                document.getElementById('log').textContent = log;
             }
             document.getElementById("log").scrollTop = document.getElementById("log").scrollHeight
         }
+
     </script>
 </body>
 

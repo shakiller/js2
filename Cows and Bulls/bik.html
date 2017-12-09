@@ -3,15 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>игра: Быки и Коровы</title>
+    <title>Document</title>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Neucha&subset=cyrillic');
         h1 {
             text-align: center;
             background: linear-gradient(brown, red);
-            /* подробнее про градиенты */
             -webkit-background-clip: text;
-            /* подробнее про background-clip */
             color: transparent;
         }
 
@@ -26,15 +24,12 @@
             color: brown;
             box-sizing: border-box;
             font-family: 'Neucha', cursive;
-            overflow: hidden;
+            overflow: auto;
             font-size: 1.4em;
             background: transparent;
-            background: linear-gradient(to right, #342aa5, red);
-            /* подробнее про градиенты */
-            -webkit-background-clip: text;
-            /* подробнее про background-clip */
-            color: transparent;
-
+            /*            background: linear-gradient(to right, #342aa5, red);*/
+            /*            -webkit-background-clip: text;*/
+            /*            color: transparent;*/
         }
 
         #enterChislo,
@@ -80,16 +75,14 @@
 
     </style>
     <script>
-        // начать повторы с интервалом 2 сек
         var timerId = setInterval(function() {
             timer();
         }, 1000);
 
-        // через 5 сек остановить повторы
         setTimeout(function() {
             clearInterval(timerId);
             alert('[хватить]');
-        }, 500000000);
+        }, 300000);
 
     </script>
 </head>

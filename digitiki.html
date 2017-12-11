@@ -85,7 +85,7 @@
                     var selectorItem = item + 1;
                     document.querySelector('#digitiki li:nth-of-type(' + selectorItem + ')').style.backgroundColor = 'red';
                     gameArr[click[0]][3] = true;
-                    compare(clickArr[0], clickArr[1]);
+                    compare();
                     clickNumber = 0;
 
                 } else {
@@ -100,21 +100,20 @@
 
             }
 
-            function compare(i1, i2) {
+            function compare() {
                 var selectItem1 = gameArr[clickArr[0][0]][1] + 1;
                 var selectItem2 = gameArr[clickArr[1][0]][1] + 1;
                 var uslovie = ((Math.abs(clickArr[0][0] - clickArr[1][0]) == 10) || (Math.abs(clickArr[0][0] - clickArr[1][0]) == 9) || (Math.abs(clickArr[0][0] - clickArr[1][0]) == 11) || (Math.abs(clickArr[0][0] - clickArr[1][0]) == 1));
-                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 10) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 10);
-                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 9) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 9);
-                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 11) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 11);
-                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 1) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 1);
                 if (clickArr[0][1] == clickArr[1][1]) {
                     if (uslovie) {
                         gameArr[clickArr[0][0]][4] = true;
                         gameArr[clickArr[1][0]][4] = true;
-
+                        gameArr[clickArr[0][0]][3] = false;
+                        gameArr[clickArr[1][0]][3] = false;
+                        console.log(gameArr[clickArr[0][0]] + ' ' + gameArr[clickArr[1][0]]);
                         document.querySelector('#digitiki li:nth-of-type(' + selectItem1 + ')').style.backgroundColor = 'black';
                         document.querySelector('#digitiki li:nth-of-type(' + selectItem2 + ')').style.backgroundColor = 'black';
+                        moveElements();
                     } else {
                         gameArr[clickArr[0][0]][3] = false;
                         gameArr[clickArr[1][0]][3] = false;
@@ -134,6 +133,17 @@
 
             }
 
+            function moveElements() {
+                for (var i = 0; i < length.gameArr; i++) {
+
+
+
+
+                }
+
+
+
+            }
 
 
 

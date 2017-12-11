@@ -18,6 +18,7 @@
             outline: solid 1px grey;
             text-align: center;
             padding: 0.2em 0;
+            user-select: none;
 
         }
 
@@ -60,48 +61,80 @@
             var doItStr = 'gameArr[' + i + '][3]=!gameArr[' + i + '][3]; doIt(' + gameArr[i][1] + ',' + gameArr[i][2] + ',' + gameArr[i][3] + ',' + gameArr[i][4] + ')';
             newLi.setAttribute('onclick', doItStr);
             digitiki.appendChild(newLi);
-            if (count < 9) {
-                count = count + 1;
-            } else {
-                count = 1;
-            };
+            count = Math.floor(Math.random() * 9);
+            //            if (count < 9) {
+            //                count = count + 1;
+            //            } else {
+            //                count = 1;
+            //            };
         }
         console.log(gameArr);
 
         function doIt(item, value, selectItem, DeleteItem) {
             click = [item, value, selectItem, DeleteItem];
-
-            if ((clickNumber == 0) && (click[0] != clickArr[0][0])) {
-                clickArr[0] = [item, value, selectItem, DeleteItem];
+            if (clickNumber == 0) {
+                clickArr[0] = click;
                 var selectorItem = item + 1;
                 document.querySelector('#digitiki li:nth-of-type(' + selectorItem + ')').style.backgroundColor = 'red';
-                clickNumber++;
-                console.log(clickNumber);
+                gameArr[click[0]][3] = true;
+                clickNumber = 1;
+
             } else {
-                if (click[0] == clickArr[0][0]) {
+                if (click[0] != clickArr[0][0]) {
+                    clickArr[1] = [item, value, selectItem, DeleteItem];
+                    var selectorItem = item + 1;
+                    document.querySelector('#digitiki li:nth-of-type(' + selectorItem + ')').style.backgroundColor = 'red';
+                    gameArr[click[0]][3] = true;
+                    compare(clickArr[0], clickArr[1]);
+                    clickNumber = 0;
+
+                } else {
                     var selectorItem = item + 1;
                     document.querySelector('#digitiki li:nth-of-type(' + selectorItem + ')').style.backgroundColor = 'white';
+                    gameArr[click[0]][3] = false;
                     clickNumber = 0;
-                    console.log(clickNumber);
+
                     clickArr[0] = ['', '', '', ''];
+
                 }
-            }
-            if ((clickNumber == 1) && (click[0] != clickArr[0][0])) {
-                clickArr[1] = [item, value, selectItem, DeleteItem]
-                compare(clickArr[0], clickArr[1]);
-                clickNumber = 0;
-                console.log(clickNumber);
-            }
-
-            function compare() {
-
-
-
-
 
             }
 
-            console.log(item + ' ' + value + ' ' + selectItem + ' ' + DeleteItem);
+            function compare(i1, i2) {
+                var selectItem1 = gameArr[clickArr[0][0]][1] + 1;
+                var selectItem2 = gameArr[clickArr[1][0]][1] + 1;
+                var uslovie = ((Math.abs(clickArr[0][0] - clickArr[1][0]) == 10) || (Math.abs(clickArr[0][0] - clickArr[1][0]) == 9) || (Math.abs(clickArr[0][0] - clickArr[1][0]) == 11) || (Math.abs(clickArr[0][0] - clickArr[1][0]) == 1));
+                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 10) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 10);
+                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 9) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 9);
+                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 11) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 11);
+                console.log(clickArr[0][0] - clickArr[1][0] + ' Math.abs(clickArr[0][0] - clickArr[1][0] == 1) ' + Math.abs(clickArr[0][0] - clickArr[1][0]) == 1);
+                if (clickArr[0][1] == clickArr[1][1]) {
+                    if (uslovie) {
+                        gameArr[clickArr[0][0]][4] = true;
+                        gameArr[clickArr[1][0]][4] = true;
+
+                        document.querySelector('#digitiki li:nth-of-type(' + selectItem1 + ')').style.backgroundColor = 'black';
+                        document.querySelector('#digitiki li:nth-of-type(' + selectItem2 + ')').style.backgroundColor = 'black';
+                    } else {
+                        gameArr[clickArr[0][0]][3] = false;
+                        gameArr[clickArr[1][0]][3] = false;
+                        document.querySelector('#digitiki li:nth-of-type(' + selectItem1 + ')').style.backgroundColor = 'white';
+                        document.querySelector('#digitiki li:nth-of-type(' + selectItem2 + ')').style.backgroundColor = 'white';
+                    }
+
+                } else {
+                    gameArr[clickArr[0][0]][3] = false;
+                    gameArr[clickArr[1][0]][3] = false;
+                    document.querySelector('#digitiki li:nth-of-type(' + selectItem1 + ')').style.backgroundColor = 'white';
+                    document.querySelector('#digitiki li:nth-of-type(' + selectItem2 + ')').style.backgroundColor = 'white';
+
+                }
+
+
+
+            }
+
+
 
 
 

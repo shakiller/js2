@@ -110,7 +110,6 @@
                         gameArr[clickArr[1][0]][4] = true;
                         gameArr[clickArr[0][0]][3] = false;
                         gameArr[clickArr[1][0]][3] = false;
-                        console.log(gameArr[clickArr[0][0]] + ' ' + gameArr[clickArr[1][0]]);
                         document.querySelector('#digitiki li:nth-of-type(' + selectItem1 + ')').style.backgroundColor = 'black';
                         document.querySelector('#digitiki li:nth-of-type(' + selectItem2 + ')').style.backgroundColor = 'black';
                         moveElements();
@@ -131,21 +130,46 @@
 
 
 
+
+
+
             }
 
             function moveElements() {
-                for (var i = 0; i < length.gameArr; i++) {
+                var endOfArr = gameArr.length
+                for (var i = 0; i < endOfArr; i++) {
+                    if (gameArr[i][4] == true) {
+                        var j = document.querySelector('#digitiki li:nth-of-type(' + parseInt(gameArr[i][1] + 1, 10) + ')');
+                        console.log(gameArr[i] + ' + ' + j.innerHTML);
+                        digitiki.removeChild(j);
+                        gameArr.splice(i, 1);
 
+                        for (var indexI = 0; indexI < endOfArr; indexI++) {
+                            gameArr[indexI][1] = indexI;
+                            doItStr = 'gameArr[' + indexI + '][3]=!gameArr[' + indexI + '][3]; doIt(' + gameArr[indexI][1] + ',' + gameArr[indexI][2] + ',' + gameArr[indexI][3] + ',' + gameArr[indexI][4] + ')';
+                            document.querySelector('#digitiki li:nth-of-type(' + parseInt(gameArr[indexI][1] + 1, 10) + ')').setAttribute('onclick', doItStr);
 
+                        }
+                        endOfArr = endOfArr - 1;
 
-
+                    }
                 }
+                for (var i = 0; i < endOfArr; i++) {
+                    if (gameArr[i][4] == true) {
+                        var j = document.querySelector('#digitiki li:nth-of-type(' + parseInt(gameArr[i][1], 10) + ')');
+                        console.log(gameArr[i] + ' + ' + j.innerHTML);
+                        digitiki.removeChild(j);
+                        gameArr.splice(i, 1);
 
-
-
+                        for (var indexI = 0; indexI < endOfArr; indexI++) {
+                            gameArr[indexI][1] = indexI;
+                            doItStr = 'gameArr[' + indexI + '][3]=!gameArr[' + indexI + '][3]; doIt(' + gameArr[indexI][1] + ',' + gameArr[indexI][2] + ',' + gameArr[indexI][3] + ',' + gameArr[indexI][4] + ')';
+                            document.querySelector('#digitiki li:nth-of-type(' + parseInt(gameArr[indexI][1] + 1, 10) + ')').setAttribute('onclick', doItStr);
+                        }
+                        endOfArr = endOfArr - 1;
+                    }
+                }
             }
-
-
 
 
 

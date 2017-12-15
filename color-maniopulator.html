@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        input[type='range'] {
+            display: block;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div id="go">go</div>
+    <script>
+        var colorSlideListener;
+        var elem = document.getElementById('go');
+
+        function onck() {
+            elem.setAttribute('onclick', 'colorSlide()');
+        }
+        onck();
+
+        function colorSlide() {
+            var colorSlideR = document.createElement('input');
+            var colorSlideG = document.createElement('input');
+            var colorSlideB = document.createElement('input');
+            var colorBlock = document.createElement('span');
+            colorBlock.id = 'colorBlock';
+            colorBlock.style.display = 'block';
+            colorBlock.style.padding = '1em';
+            colorBlock.style.outline = 'solid 1px red';
+            colorSlideR.id = 'colorSlideListenerR';
+            colorSlideG.id = 'colorSlideListenerG';
+            colorSlideB.id = 'colorSlideListenerB';
+            colorSlideR.setAttribute('type', 'range');
+            colorSlideG.setAttribute('type', 'range');
+            colorSlideB.setAttribute('type', 'range');
+            colorSlideR.setAttribute('min', 0);
+            colorSlideR.setAttribute('max', 255);
+            colorSlideG.setAttribute('min', 0);
+            colorSlideG.setAttribute('max', 255);
+            colorSlideB.setAttribute('min', 0);
+            colorSlideB.setAttribute('max', 255);
+            elem.appendChild(colorSlideR);
+            elem.appendChild(colorSlideG);
+            elem.appendChild(colorSlideB);
+            elem.appendChild(colorBlock);
+            elem.removeAttribute('onclick');
+            colorR = document.getElementById('colorSlideListenerR');
+            colorG = document.getElementById('colorSlideListenerG');
+            colorB = document.getElementById('colorSlideListenerB');
+            colorBlockListener = document.getElementById('colorBlock');
+            colorBlockListener.style.width = '2em';
+            console.log(colorSlideListener);
+            colorR.oninput = function changeListener() {
+                colorBlockListener.style.backgroundColor = 'rgb(' + colorR.value + ',' + colorG.value + ',' + colorB.value + ')';
+            }
+            colorG.oninput = function changeListener() {
+                colorBlockListener.style.backgroundColor = 'rgb(' + colorR.value + ',' + colorG.value + ',' + colorB.value + ')';
+            }
+            colorB.oninput = function changeListener() {
+                colorBlockListener.style.backgroundColor = 'rgb(' + colorR.value + ',' + colorG.value + ',' + colorB.value + ')';
+            }
+        }
+
+    </script>
+
+
+
+</body>
+
+</html>

@@ -1,36 +1,84 @@
 <!-- jquery, jquery ui-->
-<script>
-var participants=[];
-var participant={
-    'id':0,
-    'name':'',
-    'surname':'',
-    'age':1,
-    'number':1,
-    'song':'',
-    'from':''
-  };
-for(var i=0;i<=20;i++){
-  participants[i]={
-  'id':i,
-  'name':String.fromCharCode(Math.floor(Math.random()*(1040+i-1071))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-i-1071))+1071),
-  'surname':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071+i))+1071),
-  'age':Math.floor(Math.random()*i)+6,
-  'number':i+20,
-  'song':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071),
-  'from':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)
-  };
+<!DOCTYPE html>
+<html lang="en">
 
-  $("body").append("<div id=i"+i+"></div>")
-  for (var text in participants[i]) {
-  
-  $("#i"+i).append(text+" <span class='"+text+"'>"+participants[i][text]+" </span>");   
-  $("#i"+i).css({"margin": "0 3px 3px 3px", "padding": "0.4em", "padding-left": "1.5em", "height": "18px", "outline":"solid 1px blue","font-size":"0.6em"});  
-  }
- $("span").css({"display":"inline-block", "width":"70px", "margin-right": "1.3em", "border-right": "solid 1px red","font-size":"2em"})
-}
-$( function() {
-    $( "body" ).sortable();
-    $( "body" ).disableSelection();
-  } );
-</script>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        var participants = [];
+        var participant = {
+            'id': 0,
+            'name': '',
+            'surname': '',
+            'age': 1,
+            'number': 1,
+            'song': '',
+            'from': ''
+        };
+        $("body").append("<table id='eurovision'></table>");
+        for (var i = 0; i <= 20; i++) {
+            participants[i] = {
+                'id': i,
+                'name': String.fromCharCode(Math.floor(Math.random() * (1040 + i - 1071)) + 1071) + '-name',
+                'surname': String.fromCharCode(Math.floor(Math.random() * (1040 - 1071 - i)) + 1071) + String.fromCharCode(Math.floor(Math.random() * (1040 - 1071 + i)) + 1071),
+                'age': Math.floor(Math.random() * i) + 6,
+                'number': 10,
+                'song': String.fromCharCode(Math.floor(Math.random() * (1040 - 1071 - i)) + 1071) + '-song-' + String.fromCharCode(Math.floor(Math.random() * (1040 - 1071 - i)) + 1071),
+                'from': String.fromCharCode(Math.floor(Math.random() * (1040 - 1071 - i)) + 1071) + '-town-' + String.fromCharCode(Math.floor(Math.random() * (1040 - 1071 - i)) + 1071)
+            };
+
+
+            $("#eurovision").append("<tr id=i" + i + "></tr>")
+            for (var text in participants[i]) {
+
+                $("#i" + i).append(" <td class='" + text + "'>" + text + ' : ' + participants[i][text] + " </td>");
+                $("#i" + i).css({
+                    "margin": "0 3px 3px 3px",
+                    "padding": "0.4em",
+                    "padding-left": "1.5em",
+                    "height": "18px",
+                    "outline": "solid 1px blue",
+                    "font-size": "0.6em"
+                });
+            }
+            $("td").css({
+                "display": "inline-block",
+                "min-width": "6em",
+                "margin-right": "1em",
+                "border-right": "solid 1px red",
+                "font-size": "1em"
+            })
+        }
+        $(function() {
+            $("#eurovision").sortable();
+            $("#eurovision").disableSelection();
+        });
+        $("body").append("<dl id='eurovisionReiting'></dl>");
+        for (var i = 0; i <= 20; i++) {
+
+            $("#eurovisionReiting").append("<dt>" + participants[i]['id'] + " : " + participants[i]['name'] + " </dt>");
+            $("#eurovisionReiting").append("<dd>" + "<input type='number' name='reiting'>" + " </dd>");
+
+        };
+
+    </script>
+
+</body>
+
+</html>

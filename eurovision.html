@@ -1,3 +1,12 @@
+<!-- jquery, jquery ui-->
+<style>
+    body { list-style-type: none; margin: 0; padding: 0; }
+    body div { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; height: 18px; outline:solid 1px blue;}
+    body div span { /*position: absolute;*/ margin-left: 1.3em; }
+<style>
+
+
+<script>
 var participants=[];
 var participant={
     'id':0,
@@ -18,7 +27,7 @@ for(var i=0;i<=20;i++){
   'song':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071),
   'from':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)
   };
-// $("body").append("<div class='item'>"+(function(){for (var text in participants[i]){return participants[i][number]}})()+"</div>");   
+
   $("body").append("<div id=i"+i+"></div>")
   for (var text in participants[i]) {
   
@@ -26,3 +35,8 @@ for(var i=0;i<=20;i++){
   }
  $("span").css({"display":"inline-block", "width":"50px"})
 }
+$( function() {
+    $( "body" ).sortable();
+    $( "body" ).disableSelection();
+  } );
+</script>

@@ -1,0 +1,27 @@
+var participants=[];
+var participant={
+    'id':0,
+    'name':'',
+    'surname':'',
+    'age':1,
+    'number':1,
+    'song':'',
+    'from':''
+  };
+for(var i=0;i<=20;i++){
+  participants[i]={
+  'id':i,
+  'name':String.fromCharCode(Math.floor(Math.random()*(1040+i-1071))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-i-1071))+1071),
+  'surname':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071+i))+1071),
+  'age':Math.random()*i+10,
+  'number':Math.random()*i+1,
+  'song':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071),
+  'from':String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)+String.fromCharCode(Math.floor(Math.random()*(1040-1071-i))+1071)
+  };
+// $("body").append("<div class='item'>"+(function(){for (var text in participants[i]){return participants[i][number]}})()+"</div>");   
+  for (var text in participants[i]) {
+  
+  $("body").append(text+" <span class='"+text+"'>"+participants[i][text]+" </span>");   
+  }
+  $("body").append('<br>')
+}

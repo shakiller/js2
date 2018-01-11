@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+</head>
+
+<body>
+    <nav>
+        <ul id="lavalamp">
+            <li><a href="">re tergdfg</a></li>
+            <li><a href="">dfgsdg</a></li>
+            <li><a href="">cxvbcxvbcvb</a></li>
+            <li><a href="">drte</a></li>
+            <li><a href="">fgdfgdg</a></li>
+            <li><a href="">dfvgdrer erer</a></li>
+        </ul>
+    </nav>
+    <script>
+        (function() {
+            $('#lavalamp').css({
+                'padding': '0',
+                'position': 'relative',
+                'text-align': 'center'
+            });
+            $('#lavalamp li').addClass('button');
+            $('#lavalamp .button').css({
+                'display': 'inline-block',
+                'margin': '0 5px'
+            });
+            $('#lavalamp a').css({
+                'color': 'grey',
+                'text-decoration': 'none',
+                'text-transform': 'uppercase'
+            })
+            $('#lavalamp').append('<li class="lavalamp"></li>');
+            var width_items;
+            var position_items;
+            $('#lavalamp .lavalamp').css({
+                'position': 'absolute',
+                'line-height': '0',
+                'border-bottom': 'solid 0px red',
+                'list-style-type': 'none',
+                'transition': 'all 0.2s ease 0.01s'
+            });
+            var lavalamp = $('#lavalamp .lavalamp');
+            $('#lavalamp li').hover(function() {
+                width_items = $(this).width();
+                position_items = this.offsetLeft;
+                console.log(position_items);
+                lavalamp.css({
+                    'width': width_items,
+                    'left': position_items,
+                    'border-bottom-width': '15px'
+                });
+            });
+        })();
+
+    </script>
+</body>
+
+</html>

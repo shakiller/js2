@@ -1,0 +1,114 @@
+<!-- jquery, jquery ui-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+    <style>
+        tr {
+            transition: all 0.2s ease 0.01s;
+        }
+
+    </style>
+</head>
+
+<body>
+    <script>
+        var participants = [];
+        var count = 1;
+
+        function participant(id, name, surname, age, number, song, from) {
+            this.id = id;
+            this.name = name;
+            this.surname = surname;
+            this.age = age;
+            this.number = number;
+            this.song = song;
+            this.from = from;
+        }
+
+        function randomName(codeLetter) {
+            return String.fromCharCode(Math.floor((1040 - 1071 - Math.floor(Math.random() * codeLetter))) + 1090);
+        }
+        $("body").append("<table id='eurovision'></table>");
+        $("#eurovision").css({
+            'position': 'relative',
+            'width': '100%',
+            'height': '320px'
+        })
+        for (var i = 0; i <= 20; i++) {
+            participants[i] = new participant(
+                i,
+                randomName(i) + randomName(i + 1) + '-name',
+                randomName(i) + randomName(i) + randomName(i) + randomName(i),
+                Math.floor(Math.random() * i) + 6,
+                0,
+                randomName(i) + '-song-' + randomName(i) + randomName(i),
+                randomName(i) + '-town-' + randomName(i) + randomName(i)
+            );
+            $("#eurovision").append("<tr id=i" + i + "></tr>")
+            for (var text in participants[i]) {
+                $("#i" + i).append(" <td class='" + text + "'>" + text + ' : ' + participants[i][text] + " </td>");
+            }
+            cssStyle();
+        }
+        $("body").append("<dl id='eurovisionReiting'></dl>");
+        for (var i = 0; i <= 20; i++) {
+            $("#eurovisionReiting").append("<dt>" + participants[i]['id'] + " : " + participants[i]['name'] + ":" + participants[i]['number'] + " </dt>");
+            var tempId = 'persons' + i;
+            var tempIdHash = '#persons' + i;
+            $("#eurovisionReiting").append("<dd>" + "<input type='number' name='reiting' id='" + tempId + "'data-number=" + i + "><br></dd>");
+        };
+        $("#eurovisionReiting>dt,#eurovisionReiting>dd").css({
+            'display': 'inline'
+        });
+        $("#eurovisionReiting>dd>input").css({
+            'width': '3em'
+        });
+        $("input").on('input', (function() {
+            var Value = $(this).val();
+            var data_number = $(this).attr('data-number');
+            participants[data_number]["number"] = Value;
+            $('tr#i' + data_number + ' td.number').text('number : ' + Value);
+            mysort('number');
+
+
+        }));
+
+        function mysort(prop) {
+            return function(obj1, obj2) {
+                return obj1[prop] - obj2[prop];
+            }
+        }
+
+        function cssStyle() {
+            for (var i = 0; i <= 20; i++) {
+                $("#i" + i).css({
+                    "margin": "0",
+                    "padding": "0.2em",
+                    "padding-left": "1.5em",
+                    "height": "1em",
+                    "outline": "solid 1px blue",
+                    "font-size": "0.6em",
+                    "position": "absolute",
+                    "width": "100%",
+                    "top": i * 16 + "px"
+                });
+            }
+            $("td").css({
+                "display": "inline-block",
+                "min-width": "6em",
+                "margin-right": "1em",
+                "border-right": "solid 1px red",
+                "font-size": "1em"
+            })
+        }
+
+    </script>
+
+</body>
+
+</html>

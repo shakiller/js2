@@ -1,0 +1,267 @@
+body {
+    --varWid: 50px;
+    --varHei: 50px;
+    --varBG2: cyan;
+    --varBG1:orange;
+    --varBGStart:red;
+}
+
+.figures {
+
+    width: 150px;
+    vertical-align: top;
+    display: inline-block;
+}
+#move, #win{display: inline-block;
+    vertical-align:top;
+    width:30px;
+    border:dotted 1px red;}
+
+#figures>*{opacity:0.2;}
+
+
+.bl {
+
+    width: var(--varWid);
+    height: var(--varHei);
+    background: var(--varBG1);
+
+}
+.start {
+
+    width: var(--varWid);
+    height: var(--varHei);
+    background: var(--varBGStart);
+
+}
+
+.playField .bl {
+    width: var(--varWid);
+    height: var(--varHei);
+    background: #ffe6b7;
+
+}
+
+.bl1 .bl-1,
+#bl1 .bl-1 {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background: var(--varBG2);
+}
+
+
+
+.bl2 .bl-1,
+#bl2 .bl-1 {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    left: 25%;
+    background: var(--varBG2);
+}
+
+
+
+.bl3 .bl-1,
+#bl3 .bl-1 {
+    width: 75%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background: var(--varBG2);
+}
+
+.bl3 .bl-2,
+#bl3 .bl-2 {
+    width: 50%;
+    height: 75%;
+    position: relative;
+    left: 25%;
+    top: -50%;
+    background: var(--varBG2);
+}
+
+.bl4 .bl-1,
+#bl4 .bl-1 {
+    width: 75%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    left: 25%;
+    background: var(--varBG2);
+}
+
+.bl4 .bl-2,
+#bl4 .bl-2 {
+    width: 50%;
+    height: 75%;
+    position: relative;
+    left: 25%;
+    top: -50%;
+    background: var(--varBG2);
+}
+
+.bl5 .bl-1,
+#bl5 .bl-1 {
+    width: 75%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    left: 25%;
+    background: var(--varBG2);
+}
+
+.bl5 .bl-2,
+#bl5 .bl-2 {
+    width: 50%;
+    height: 75%;
+    position: relative;
+    left: 25%;
+    top: -25%;
+    background: var(--varBG2);
+}
+
+.bl6 .bl-1,
+#bl6 .bl-1 {
+    width: 75%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background: var(--varBG2);
+}
+
+.bl6 .bl-2,
+#bl6 .bl-2 {
+    width: 50%;
+    height: 75%;
+    position: relative;
+    background: var(--varBG2);
+    left: 25%;
+    top: -25%;
+}
+
+.bl7 .bl-1,
+#bl7 .bl-1 {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background: var(--varBG2);
+}
+
+.bl7 .bl-2,
+#bl7 .bl-2 {
+    width: 50%;
+    height: 75%;
+    position: relative;
+    background: var(--varBG2);
+    left: 25%;
+    top: -25%;
+}
+
+.bl8 .bl-1,
+#bl8 .bl-1 {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background: var(--varBG2);
+}
+
+.bl8 .bl-2,
+#bl8 .bl-2 {
+    width: 50%;
+    height: 75%;
+    position: relative;
+    background: var(--varBG2);
+    left: 25%;
+    top: -50%;
+}
+
+.bl9 .bl-1,
+#bl9 .bl-1 {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background: var(--varBG2);
+}
+
+.bl9 .bl-2,
+#bl9 .bl-2 {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    background: var(--varBG2);
+    left: 25%;
+    top: -50%;
+}
+
+.bl10 .bl-1,
+#bl10 .bl-1 {
+    width: 50%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    left: 50%;
+    background: var(--varBG2);
+}
+
+.bl10 .bl-2,
+#bl10 .bl-2 {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    background: var(--varBG2);
+    left: 25%;
+    top: -50%;
+}
+
+.bl11 .bl-1,
+#bl11 .bl-1 {
+    width: 100%;
+    height: 50%;
+    position: relative;
+    top: 25%;
+    background: var(--varBG2);
+}
+
+.bl11 .bl-2,
+#bl11 .bl-2 {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    background: var(--varBG2);
+    left: 25%;
+    top: -50%;
+}
+
+.playField {
+    display: inline-block;
+}
+
+.playField td {
+    outline: dotted 1px grey;
+    width: var(--varWid);
+    height: var(--varHei);
+}
+
+.over {
+    position: relative;
+}
+
+.over:after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: red;
+}
+td{display:block;}
+.playField .tdblock{background: var(--varBG1);}
+#start, #end{background: var(--varBG2);}
+tr{display: flex;}

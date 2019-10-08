@@ -233,7 +233,7 @@ pF.querySelectorAll('td').forEach(function (e) {
           checkway(Id+1,recurs);
           }
     }
-    if ((board["table"][Id].right==1) && (board["table"][Id-1]!=undefined) && (board["table"][Id-1].left==1) && (board["table"][Id-1].start==undefined)) {
+    if ((board["table"][Id].left==1) && (board["table"][Id-1]!=undefined) && (board["table"][Id-1].right==1) && (board["table"][Id-1].start==undefined)) {
         board["table"][Id-1].start=true;
         console.log(pF.rows[Math.floor((Id-1)/5)].cells[(Id-1)%5]);
         pF.rows[Math.floor((Id-1)/5)].cells[(Id-1)%5].setAttribute('style','background:red;');

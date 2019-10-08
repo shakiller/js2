@@ -8,7 +8,7 @@ function Board() {
       table_Temp[tid].bottom = goal ? customWay[2] : window[current_figure_id].ways[2]
       table_Temp[tid].left = goal ? customWay[3] : window[current_figure_id].ways[3]
       table_Temp[tid].ways = goal ? customWay : window[current_figure_id].ways
-      table_Temp[tid].start = goal ? undefined : window[current_figure_id].start
+      table_Temp[tid].start=undefined;
   }
   this.checkWin = () => {
       console.log(this.table)
@@ -48,6 +48,7 @@ function Board() {
               } else return 0
 
           }
+          
           var checkTop = top ? !!top == !!topParent() : true;
           //console.log({"top":top,"topParent":topParent(),"checkTop":checkTop})
           var checkRight = right ? !!right == !!rightParent() : true;
@@ -190,42 +191,59 @@ pF.querySelectorAll('td').forEach(function (e) {
       current_figure_rand();
       board.checkWin();
       var count=0;
+      if (board["table"][endId]=="start"){document.getElementById("win").innerHTML="!!!";return;}
+      for (cell in board["table"]){
+      board["table"][cell].start=undefined;}
       checkway(startId,count);
           
   }
   
   function checkway(Id,recurs){
-      console.log("-------------checkway start "+recurs);
-      if (recurs>=25){return;}
-    var table_Temp=board["table"];
-    table_Temp[Id].start=true;
+      console.log("-------------checkway start ", recurs);
+      
+      recurs++;
+  // var table_Temp=board["table"];
+    //table_Temp[Id].start=true;
    /* if(table_Temp[startId-5]){
         console.log(table_Temp[startId-5]);
         console.log(table_Temp[startId-5].bottom);
         console.log(table_Temp[startId-5].start);
         }*/
-    if ((table_Temp[Id].top==1) && (table_Temp[Id-5]) && (table_Temp[Id-5].bottom==1)) {
-        table_Temp[Id-5].start=true;
+    if ((board["table"][Id].top==1) && (board["table"][Id-5]!=undefined) && (board["table"][Id-5].bottom==1) && (board["table"][Id-5].start==undefined)) {
+        board["table"][Id-5].start=true;
         console.log(pF.rows[Math.floor((Id-5)/5)].cells[(Id-5)%5]);
         pF.rows[Math.floor((Id-5)/5)].cells[(Id-5)%5].setAttribute('style','background:red;');
-        checkway(Id-5);
+        if (recurs<25){
+          checkway(Id-5,recurs);
+          }
     }
-    if ((table_Temp[Id].bottom==1) && (table_Temp[Id+5]) && (table_Temp[Id+5].top==1)) {
-        table_Temp[Id+5].start=true;
+     if ((board["table"][Id].bottom==1) && (board["table"][Id+5]!=undefined) && (board["table"][Id+5].top==1) && (board["table"][Id+5].start==undefined)) {
+        board["table"][Id+5].start=true;
         console.log(pF.rows[Math.floor((Id+5)/5)].cells[(Id+5)%5]);
         pF.rows[Math.floor((Id+5)/5)].cells[(Id+5)%5].setAttribute('style','background:red;');
-     //   checkway(Id+5);
+        if (recurs<25){
+          checkway(Id+5,recurs);
+          }
     }
-    if ((table_Temp[Id].right==1) && (table_Temp[Id+1]) && (table_Temp[Id+1].left==1)) {
-        table_Temp[Id+1].start=true;
+    if ((board["table"][Id].right==1) && (board["table"][Id+1]!=undefined) && (board["table"][Id+1].left==1) && (board["table"][Id+1].start==undefined)) {
+        board["table"][Id+1].start=true;
         console.log(pF.rows[Math.floor((Id+1)/5)].cells[(Id+1)%5]);
         pF.rows[Math.floor((Id+1)/5)].cells[(Id+1)%5].setAttribute('style','background:red;');
-     //   checkway(Id+1);
+        if (recurs<25){
+          checkway(Id+1,recurs);
+          }
+    }
+    if ((board["table"][Id].right==1) && (board["table"][Id-1]!=undefined) && (board["table"][Id-1].left==1) && (board["table"][Id-1].start==undefined)) {
+        board["table"][Id-1].start=true;
+        console.log(pF.rows[Math.floor((Id-1)/5)].cells[(Id-1)%5]);
+        pF.rows[Math.floor((Id-1)/5)].cells[(Id-1)%5].setAttribute('style','background:red;');
+        if (recurs<25){
+          checkway(Id-1,recurs);
+          }
     }
       
 console.log("---------------checkway end");    
 }
 });
-
 
 

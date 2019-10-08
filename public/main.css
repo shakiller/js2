@@ -7,16 +7,17 @@ body {
 
 .figures {
 
-    width: 150px;
+    width: 55px;
     vertical-align: top;
     display: inline-block;
 }
 #move, #win{display: inline-block;
     vertical-align:top;
-    width:30px;
+    width:70px;
+    font-size:3em;
     border:dotted 1px red;}
 
-#figures>*{opacity:0.2;}
+#figures>*{display:none;}
 
 
 .bl {
@@ -239,7 +240,7 @@ body {
 }
 
 .playField {
-    display: inline-block;
+    display: block;
 }
 
 .playField td {

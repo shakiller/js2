@@ -124,7 +124,7 @@ var endId;
 function current_figure_rand() {
   current_figure = Math.floor(Math.random() * 11) + 1;
   current_figure_id = "bl" + current_figure;
-  document.getElementById(current_figure_id).setAttribute('style', 'opacity:1');
+  document.getElementById(current_figure_id).setAttribute('style', 'display:block;');
   return current_figure_id;
 
 }
@@ -175,7 +175,7 @@ pF.querySelectorAll('td').forEach(function (e) {
       if ((id==endId) || (id==startId)){return}
       board.writeChanges(id, false)
       document.getElementById("move").innerHTML=++move;
-      document.getElementById(current_figure_id).setAttribute('style', 'opacity:0.2');
+      document.getElementById(current_figure_id).setAttribute('style', 'display:none;');
       document.getElementById("win").innerHTML="win";
       document.getElementById("move").innerHTML=++move;
       current_figure_rand();

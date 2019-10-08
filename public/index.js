@@ -191,7 +191,7 @@ pF.querySelectorAll('td').forEach(function (e) {
          pF.rows[Math.floor((i)/5)].cells[(i)%5].setAttribute('style','background:orange;');}
       
       checkway(startId,count);
-          
+      if(board["table"][endId].start==true){pF.rows[Math.floor((endId)/5)].cells[(endId)%5].innerHTML="WIN!";}    
   }
   
   function checkway(Id,recurs){

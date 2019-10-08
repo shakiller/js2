@@ -13,7 +13,7 @@ function Board() {
   this.checkWin = () => {
       console.log(this.table)
       for (cell in this.table) {
-          console.log(+cell)
+          
           var top = this["table"][+cell].top;//1
           var topParent = () => {
               if (+cell <= 4) {
@@ -50,14 +50,14 @@ function Board() {
           }
           
           var checkTop = top ? !!top == !!topParent() : true;
-          //console.log({"top":top,"topParent":topParent(),"checkTop":checkTop})
           var checkRight = right ? !!right == !!rightParent() : true;
-          //console.log({"right":right,"rightParent":rightParent(),"checkRight":checkRight})
           var checkBottom = bottom ? !!bottom == !!bottomParent() : true;
-          //console.log({"bottom":bottom,"bottomParent":bottomParent(),"checkBottom":checkBottom})
           var checkLeft = !left ? !!left == !!leftParent() : true;
-          //console.log({"left":left,"leftParent":leftParent(),"checkLeft":checkLeft})
-          if (!checkTop || !checkRight || !checkBottom || !checkLeft) { console.log("fail");document.getElementById("win").innerHTML="fail"; break; } else var a = "prostotak"
+          if (!checkTop || !checkRight || !checkBottom || !checkLeft) { 
+              console.log("fail");
+                document.getElementById("win").innerHTML="fail"; 
+                break; } 
+          else var a = "prostotak";
       }
       console.log("win");
       
@@ -125,7 +125,6 @@ function current_figure_rand() {
   current_figure = Math.floor(Math.random() * 11) + 1;
   current_figure_id = "bl" + current_figure;
   document.getElementById(current_figure_id).setAttribute('style', 'opacity:1');
-  //console.log("one   "+current_figure_id);
   return current_figure_id;
 
 }
@@ -147,10 +146,7 @@ function freeways(innerId, outerId){
 function start_end_rand() {
   current_figure_rand();
   start = Math.floor(Math.random() * 5);
-  //console.log("start-"+start)
-
   end = Math.floor(Math.random() * 5);
-  //console.log("end-"+end)
   var start_block = pF.rows[start].cells[0];
   var end_block = pF.rows[end].cells[4];
   freeways(start,end);
@@ -160,31 +156,25 @@ function start_end_rand() {
   board.writeChanges(endId, true, end_ways);
   start_block.setAttribute("id", "start");
   end_block.setAttribute("id", "end");
-  //console.log("two   "+current_figure_id);
-    
   return current_figure_id;
 }
 
 
 start_end_rand();
 
-//console.log("---"+current_figure_id);
 var id = 0
 pF.querySelectorAll('td').forEach(function (e) {
-  //console.log(e)
+  console.log(e)
   e.setAttribute('data-id', id++);
   e.onclick = function () {
-    
-      //console.log("---"+current_figure_id);
+
       var setAttr = "tdblock bl " + current_figure_id;
       var tempThis=this;
       this.setAttribute('class', setAttr);
       var id = this.dataset.id;
-      console.log("click "+id)
       if ((id==endId) || (id==startId)){return}
       board.writeChanges(id, false)
       document.getElementById("move").innerHTML=++move;
-      //console.log(board.table)
       document.getElementById(current_figure_id).setAttribute('style', 'opacity:0.2');
       document.getElementById("win").innerHTML="win";
       document.getElementById("move").innerHTML=++move;
@@ -194,21 +184,20 @@ pF.querySelectorAll('td').forEach(function (e) {
       if (board["table"][endId]=="start"){document.getElementById("win").innerHTML="!!!";return;}
       for (cell in board["table"]){
       board["table"][cell].start=undefined;}
+
+      
+     for (var i=0;i<=24;i++){ 
+         console.log(pF.rows[Math.floor((i)/5)].cells[(i)%5]);
+         pF.rows[Math.floor((i)/5)].cells[(i)%5].setAttribute('style','background:orange;');}
+      
       checkway(startId,count);
           
   }
   
   function checkway(Id,recurs){
-      console.log("-------------checkway start ", recurs);
       
       recurs++;
-  // var table_Temp=board["table"];
-    //table_Temp[Id].start=true;
-   /* if(table_Temp[startId-5]){
-        console.log(table_Temp[startId-5]);
-        console.log(table_Temp[startId-5].bottom);
-        console.log(table_Temp[startId-5].start);
-        }*/
+      
     if ((board["table"][Id].top==1) && (board["table"][Id-5]!=undefined) && (board["table"][Id-5].bottom==1) && (board["table"][Id-5].start==undefined)) {
         board["table"][Id-5].start=true;
         console.log(pF.rows[Math.floor((Id-5)/5)].cells[(Id-5)%5]);
@@ -241,8 +230,7 @@ pF.querySelectorAll('td').forEach(function (e) {
           checkway(Id-1,recurs);
           }
     }
-      
-console.log("---------------checkway end");    
+
 }
 });
 

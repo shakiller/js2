@@ -30,7 +30,7 @@ body {
 .playField .bl {
     width: var(--varWid);
     height: var(--varHei);
-    background: #ffe6b7;
+    background: --varBG1;
 
 }
 

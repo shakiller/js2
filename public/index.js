@@ -1,4 +1,5 @@
 var move=0;
+var checkStartCell;
 function Board() {
   var table_Temp=this["table"] = {}
   this.writeChanges = (tid, goal, customWay) => {
@@ -11,9 +12,11 @@ function Board() {
       table_Temp[tid].start=undefined;
   }
   this.checkWin = () => {
-      console.log(this.table)
+     // console.log(this.table)
+      checkStartCell=0;
       for (cell in this.table) {
-          
+
+                
           var top = this["table"][+cell].top;//1
           var topParent = () => {
               if (+cell <= 4) {
@@ -59,8 +62,8 @@ function Board() {
                 break; } 
           else var a = "prostotak";
       }
-      console.log("win");
       
+      console.log(checkStartCell+" win");      
   }
 }
 var board = new Board();
@@ -129,6 +132,7 @@ function current_figure_rand() {
 
 }
 function freeways(innerId, outerId){
+  console.log(innerId, outerId);
   if (innerId == 0) {
     start_ways=[0,1,1,0]
   } else if (innerId == 4) {
@@ -137,7 +141,7 @@ function freeways(innerId, outerId){
 
   if (outerId == 0) {
     end_ways=[0,0,1,1]
-  } else if (innerId == 4){
+  } else if (outerId == 4){
     end_ways=[1,0,0,1]
   } else  {end_ways=[1,0,1,1]}
 
@@ -187,11 +191,17 @@ pF.querySelectorAll('td').forEach(function (e) {
 
       
      for (var i=0;i<=24;i++){ 
-         console.log(pF.rows[Math.floor((i)/5)].cells[(i)%5]);
          pF.rows[Math.floor((i)/5)].cells[(i)%5].setAttribute('style','background:orange;');}
       
       checkway(startId,count);
-      if(board["table"][endId].start==true){pF.rows[Math.floor((endId)/5)].cells[(endId)%5].innerHTML="WIN!";}    
+      console.log("checkStartCell ",checkStartCell,checkStartCell==25)
+
+      for (cell in board["table"]) {
+          if (board["table"][cell].start==true){checkStartCell++;
+          console.log(checkStartCell);}}
+
+      if ((board["table"][endId].start==true) && (checkStartCell==25)){pF.rows[Math.floor((endId)/5)].cells[(endId)%5].innerHTML="WIN!";}
+        
   }
   
   function checkway(Id,recurs){
@@ -200,7 +210,6 @@ pF.querySelectorAll('td').forEach(function (e) {
       
     if ((board["table"][Id].top==1) && (board["table"][Id-5]!=undefined) && (board["table"][Id-5].bottom==1) && (board["table"][Id-5].start==undefined)) {
         board["table"][Id-5].start=true;
-        console.log(pF.rows[Math.floor((Id-5)/5)].cells[(Id-5)%5]);
         pF.rows[Math.floor((Id-5)/5)].cells[(Id-5)%5].setAttribute('style','background:red;');
         if (recurs<25){
           checkway(Id-5,recurs);
@@ -208,7 +217,6 @@ pF.querySelectorAll('td').forEach(function (e) {
     }
      if ((board["table"][Id].bottom==1) && (board["table"][Id+5]!=undefined) && (board["table"][Id+5].top==1) && (board["table"][Id+5].start==undefined)) {
         board["table"][Id+5].start=true;
-        console.log(pF.rows[Math.floor((Id+5)/5)].cells[(Id+5)%5]);
         pF.rows[Math.floor((Id+5)/5)].cells[(Id+5)%5].setAttribute('style','background:red;');
         if (recurs<25){
           checkway(Id+5,recurs);
@@ -216,7 +224,6 @@ pF.querySelectorAll('td').forEach(function (e) {
     }
     if ((board["table"][Id].right==1) && (board["table"][Id+1]!=undefined) && (board["table"][Id+1].left==1) && (board["table"][Id+1].start==undefined)) {
         board["table"][Id+1].start=true;
-        console.log(pF.rows[Math.floor((Id+1)/5)].cells[(Id+1)%5]);
         pF.rows[Math.floor((Id+1)/5)].cells[(Id+1)%5].setAttribute('style','background:red;');
         if (recurs<25){
           checkway(Id+1,recurs);
@@ -224,7 +231,6 @@ pF.querySelectorAll('td').forEach(function (e) {
     }
     if ((board["table"][Id].left==1) && (board["table"][Id-1]!=undefined) && (board["table"][Id-1].right==1) && (board["table"][Id-1].start==undefined)) {
         board["table"][Id-1].start=true;
-        console.log(pF.rows[Math.floor((Id-1)/5)].cells[(Id-1)%5]);
         pF.rows[Math.floor((Id-1)/5)].cells[(Id-1)%5].setAttribute('style','background:red;');
         if (recurs<25){
           checkway(Id-1,recurs);

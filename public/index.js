@@ -182,7 +182,6 @@ pF.querySelectorAll('td').forEach(function (e) {
       document.getElementById("move").innerHTML=++move;
       document.getElementById(current_figure_id).setAttribute('style', 'display:none;');
       document.getElementById("win").innerHTML="win";
-      document.getElementById("move").innerHTML=++move;
       current_figure_rand();
       board.checkWin();
       var count=0;
@@ -191,8 +190,8 @@ pF.querySelectorAll('td').forEach(function (e) {
       board["table"][cell].start=undefined;}
 
       
-     for (var i=0;i<=24;i++){ 
-         pF.rows[Math.floor((i)/5)].cells[(i)%5].setAttribute('style','background:orange;');}
+     for (var i=0;i<=(size*size-1);i++){ 
+         pF.rows[Math.floor((i)/size)].cells[(i)%size].setAttribute('style','background:orange;');}
       
       checkway(startId,count);
       console.log("checkStartCell ",checkStartCell,checkStartCell==(size*size))

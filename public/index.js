@@ -41,7 +41,7 @@ function Board() {
           }
           var left = this["table"][+cell].left;
           var leftParent = () => {
-              if ((+cell + 5) % 5) {
+              if (!(+cell + 5) % 5) {
                   return 0
               } else if (this["table"][+cell - 1]) {
                   return this["table"][+cell - 1].right
@@ -52,7 +52,7 @@ function Board() {
           var checkTop = top ? !!top == !!topParent() : true;
           var checkRight = right ? !!right == !!rightParent() : true;
           var checkBottom = bottom ? !!bottom == !!bottomParent() : true;
-          var checkLeft = !left ? !!left == !!leftParent() : true;
+          var checkLeft = left ? !!left == !!leftParent() : true;
           if (!checkTop || !checkRight || !checkBottom || !checkLeft) { 
               console.log("fail");
                 document.getElementById("win").innerHTML="fail"; 

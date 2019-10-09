@@ -1,4 +1,5 @@
 var move=0;
+var size=10;
 var checkStartCell;
 function Board() {
   var table_Temp=this["table"] = {}
@@ -19,15 +20,15 @@ function Board() {
                 
           var top = this["table"][+cell].top;//1
           var topParent = () => {
-              if (+cell <= 4) {
+              if (+cell <= (size-1)) {
                   return 0
-              } else if (this["table"][+cell - 5]) {
-                  return this["table"][+cell - 5].bottom
+              } else if (this["table"][+cell - size]) {
+                  return this["table"][+cell - size].bottom
               } else return 0
           }
           var right = this["table"][+cell].right;
           var rightParent = () => {
-              if (!(+cell + 1) % 5) {
+              if (!(+cell + 1) % size) {
                   return 0
               } else if (this["table"][+cell + 1]) {
                   return this["table"][+cell + 1].left
@@ -35,16 +36,16 @@ function Board() {
           }
           var bottom = this["table"][+cell].bottom;
           var bottomParent = () => {
-              if ((+cell >= 20)) {
+              if ((+cell >= (size*(size-1)))) {
                   return 0
-              } else if (this["table"][+cell + 5]) {
-                  return this["table"][+cell + 5].top
+              } else if (this["table"][+cell + size]) {
+                  return this["table"][+cell + size].top
               } else return 0
 
           }
           var left = this["table"][+cell].left;
           var leftParent = () => {
-              if (!(+cell + 5) % 5) {
+              if (!(+cell + size) % size) {
                   return 0
               } else if (this["table"][+cell - 1]) {
                   return this["table"][+cell - 1].right
@@ -135,13 +136,13 @@ function freeways(innerId, outerId){
   console.log(innerId, outerId);
   if (innerId == 0) {
     start_ways=[0,1,1,0]
-  } else if (innerId == 4) {
+  } else if (innerId == (size-1)) {
     start_ways=[1,1,0,0]
   } else  {start_ways=[1,1,1,0]};
 
   if (outerId == 0) {
     end_ways=[0,0,1,1]
-  } else if (outerId == 4){
+  } else if (outerId == (size-1)){
     end_ways=[1,0,0,1]
   } else  {end_ways=[1,0,1,1]}
 
@@ -149,13 +150,13 @@ function freeways(innerId, outerId){
 
 function start_end_rand() {
   current_figure_rand();
-  start = Math.floor(Math.random() * 5);
-  end = Math.floor(Math.random() * 5);
+  start = Math.floor(Math.random() * size);
+  end = Math.floor(Math.random() * size);
   var start_block = pF.rows[start].cells[0];
-  var end_block = pF.rows[end].cells[4];
+  var end_block = pF.rows[end].cells[(size-1)];
   freeways(start,end);
-  startId=start * 5;
-  endId=end * 5 + 4;
+  startId=start * size;
+  endId=end * size + size-1;
   board.writeChanges(startId, true, start_ways);
   board.writeChanges(endId, true, end_ways);
   start_block.setAttribute("id", "start");
@@ -194,13 +195,13 @@ pF.querySelectorAll('td').forEach(function (e) {
          pF.rows[Math.floor((i)/5)].cells[(i)%5].setAttribute('style','background:orange;');}
       
       checkway(startId,count);
-      console.log("checkStartCell ",checkStartCell,checkStartCell==25)
+      console.log("checkStartCell ",checkStartCell,checkStartCell==(size*size))
 
       for (cell in board["table"]) {
           if (board["table"][cell].start==true){checkStartCell++;
           console.log(checkStartCell);}}
 
-      if ((board["table"][endId].start==true) && (checkStartCell==25)){pF.rows[Math.floor((endId)/5)].cells[(endId)%5].innerHTML="WIN!";}
+      if ((board["table"][endId].start==true) && (checkStartCell==(size*size))){pF.rows[Math.floor((endId)/size)].cells[(endId)%size].innerHTML="WIN!";}
         
   }
   
@@ -208,31 +209,31 @@ pF.querySelectorAll('td').forEach(function (e) {
       
       recurs++;
       
-    if ((board["table"][Id].top==1) && (board["table"][Id-5]!=undefined) && (board["table"][Id-5].bottom==1) && (board["table"][Id-5].start==undefined)) {
-        board["table"][Id-5].start=true;
-        pF.rows[Math.floor((Id-5)/5)].cells[(Id-5)%5].setAttribute('style','background:red;');
-        if (recurs<25){
-          checkway(Id-5,recurs);
+    if ((board["table"][Id].top==1) && (board["table"][Id-size]!=undefined) && (board["table"][Id-size].bottom==1) && (board["table"][Id-size].start==undefined)) {
+        board["table"][Id-size].start=true;
+        pF.rows[Math.floor((Id-size)/size)].cells[(Id-size)%size].setAttribute('style','background:red;');
+        if (recurs<size*size){
+          checkway(Id-size,recurs);
           }
     }
-     if ((board["table"][Id].bottom==1) && (board["table"][Id+5]!=undefined) && (board["table"][Id+5].top==1) && (board["table"][Id+5].start==undefined)) {
-        board["table"][Id+5].start=true;
-        pF.rows[Math.floor((Id+5)/5)].cells[(Id+5)%5].setAttribute('style','background:red;');
-        if (recurs<25){
-          checkway(Id+5,recurs);
+     if ((board["table"][Id].bottom==1) && (board["table"][Id+size]!=undefined) && (board["table"][Id+size].top==1) && (board["table"][Id+size].start==undefined)) {
+        board["table"][Id+size].start=true;
+        pF.rows[Math.floor((Id+size)/size)].cells[(Id+size)%size].setAttribute('style','background:red;');
+        if (recurs<(size*size)){
+          checkway(Id+size,recurs);
           }
     }
     if ((board["table"][Id].right==1) && (board["table"][Id+1]!=undefined) && (board["table"][Id+1].left==1) && (board["table"][Id+1].start==undefined)) {
         board["table"][Id+1].start=true;
-        pF.rows[Math.floor((Id+1)/5)].cells[(Id+1)%5].setAttribute('style','background:red;');
-        if (recurs<25){
+        pF.rows[Math.floor((Id+1)/size)].cells[(Id+1)%size].setAttribute('style','background:red;');
+        if (recurs<(size*size)){
           checkway(Id+1,recurs);
           }
     }
     if ((board["table"][Id].left==1) && (board["table"][Id-1]!=undefined) && (board["table"][Id-1].right==1) && (board["table"][Id-1].start==undefined)) {
         board["table"][Id-1].start=true;
-        pF.rows[Math.floor((Id-1)/5)].cells[(Id-1)%5].setAttribute('style','background:red;');
-        if (recurs<25){
+        pF.rows[Math.floor((Id-1)/size)].cells[(Id-1)%size].setAttribute('style','background:red;');
+        if (recurs<(size*size)){
           checkway(Id-1,recurs);
           }
     }

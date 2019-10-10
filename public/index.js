@@ -212,7 +212,7 @@ pF.querySelectorAll('td').forEach(function (e) {
 
       if ((board["table"][endId].start==true) && (checkStartCell==(size*size))){pF.rows[Math.floor((endId)/size)].cells[(endId)%size].innerHTML="WIN!";
       for (var i=0;i<=(size*size-1);i++){ 
-         pF.rows[Math.floor((i)/size)].cells[(i)%size].setAttribute('style','background:'+FULLtransparent+';');}
+         pF.rows[Math.floor((i)/size)].cells[(i)%size].setAttribute('style','background:'+FULLtransparent+';--varBG2: #00ffff00;outline: dotted 1px #80808000;');}
       }
         
   }

@@ -1,36 +1,55 @@
+html{
+    height: 100%;
+    width: 90vh;
+    margin: auto;
+}
 body {
-    --varWid: 8vw;
-    --varHei: 8vw;
+    --varWid: calc(90vh / 12);
+    --varHei: calc(90vh / 12);
     --varBG2: cyan;
     --varBG1:orange;
+    width: 100%;
+    height: 100%;
+}
+#body{    
+    width: 100%;
+    height: 100%;
+    margin: auto;
 }
 
 .figures {
     vertical-align: top;
-    margin-top:3vw;
+    margin-top: 3%;
     text-align:center;
     display:flex;
     justify-content:center;
 }
-.figures .bl{border:solid 3px grey;
+.figures .bl{
+    border:solid 3px grey;
     filter:sepia(100%);
     position:relative;
     margin-left:-5vw;
-    z-index:0;}
+    z-index:0;
+}
 
-#playField{display:inline-block;
-    margin-top:3vw;}
+#playField{
+    display:inline-block;
+    margin-top:3%;
+}
 
 .playField{text-align:center;}
 
-#move, #win{display: inline-block;
-    vertical-align:top;
-    width:20vw;
-    font-size:6vw;
-    line-height:5vw;
-    border:dotted 1px red;
-    margin-left:5vw;
-    font-family:sans-serif;}
+#move, #win{    
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    font-size: 2em;
+    line-height: 105%;
+    border: dotted 1px red;
+    margin-left: 5%;
+    font-family: sans-serif;
+    background: hsla(208, 100%, 97%, 0.7);
+}
 
 
 
@@ -256,6 +275,7 @@ body {
 
 .playField {
     display: block;
+    width: 100%;
 }
 
 .playField td {

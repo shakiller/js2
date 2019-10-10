@@ -1,3 +1,4 @@
+*{transition:all 0.1s ease 0.01s}
 html{
     height: 100%;
     width: 90vh;

@@ -1,27 +1,42 @@
 body {
-    --varWid: 50px;
-    --varHei: 50px;
+    --varWid: 8vw;
+    --varHei: 8vw;
     --varBG2: cyan;
     --varBG1:orange;
 }
 
 .figures {
-
-    width: 55px;
     vertical-align: top;
-    display: inline-block;
+    margin-top:3vw;
+    text-align:center;
+    display:flex;
+    justify-content:center;
 }
+.figures .bl{border:solid 3px grey;
+    filter:sepia(100%);
+    position:relative;
+    margin-left:-5vw;
+    z-index:0;}
+
+#playField{display:inline-block;
+    margin-top:3vw;}
+
+.playField{text-align:center;}
+
 #move, #win{display: inline-block;
     vertical-align:top;
-    width:70px;
-    font-size:3em;
-    border:dotted 1px red;}
+    width:20vw;
+    font-size:6vw;
+    line-height:5vw;
+    border:dotted 1px red;
+    margin-left:5vw;
+    font-family:sans-serif;}
 
-#figures>*{display:none;}
+
 
 
 .bl {
-
+    display:inline-block;
     width: var(--varWid);
     height: var(--varHei);
     background: var(--varBG1);

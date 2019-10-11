@@ -5,6 +5,7 @@ var FULLtransparent="hsla(0,50%,50%,0);"
 var bg="https://i.ytimg.com/vi/3p4Gc-dnV3U/maxresdefault.jpg";
 var bodyBG="img/bg_map.png";
 var HUEdeg=0;
+var BGposX=0;
 var checkStartCell;
 function Board() {
   var table_Temp=this["table"] = {}
@@ -172,7 +173,7 @@ function start_end_rand() {
 
 
 start_end_rand();
-document.getElementById("body").setAttribute('style',"background-image:url("+bodyBG+");background-size:cover;background-position:center;");
+document.getElementById("body").setAttribute('style',"background-image:url("+bodyBG+");background-size:cover;background-position:"+BGposX+"% 50%;");
 var id = 0
 pF.querySelectorAll('td').forEach(function (e) {
   console.log(e)
@@ -189,6 +190,8 @@ pF.querySelectorAll('td').forEach(function (e) {
       board.writeChanges(id, false);
       document.getElementById("move").innerHTML=++move;
       document.getElementById(current_figure_id).setAttribute('style', 'filter:sepia(100%);order:0; z-index:0;transform:translateY(0px);background-image: url(img/card_general.png);');
+      document.getElementById("body").setAttribute('style',"background-image:url("+bodyBG+");background-size:cover;background-position:"+BGposX+"% 50%;");
+      if (BGposX<100){BGposX++} else {BGposX=0};
       document.getElementById("win").innerHTML="win";
       for (var i=0;i<=(size*size-1);i++){ 
          pF.rows[Math.floor((i)/size)].cells[(i)%size].setAttribute('style','background:'+FULLtransparent+';');}

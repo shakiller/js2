@@ -3,7 +3,7 @@ var size=10;
 var BGtransparent="hsla(0,50%,50%,0.5);"
 var FULLtransparent="hsla(0,50%,50%,0);"
 var bg="https://i.ytimg.com/vi/3p4Gc-dnV3U/maxresdefault.jpg";
-var bodyBG="https://is2-ssl.mzstatic.com/image/thumb/Purple123/v4/ae/d0/6b/aed06bef-d503-53bb-192d-6638408a31eb/mzl.mpnjgrpf.jpg/643x0w.jpg";
+var bodyBG="img/bg_map.png";
 var HUEdeg=0;
 var checkStartCell;
 function Board() {
@@ -133,7 +133,7 @@ var endId;
 function current_figure_rand() {
   current_figure = Math.floor(Math.random() * 11) + 1;
   current_figure_id = "bl" + current_figure;
-  document.getElementById(current_figure_id).setAttribute('style', 'filter:sepia(0);order:1; z-index:1;transform:translateY(-10px);');
+  document.getElementById(current_figure_id).setAttribute('style', 'filter:sepia(0);order:1; z-index:1;transform:translateY(-10px);background-image: url(img/card_general.png);');
   return current_figure_id;
 
 }
@@ -188,7 +188,7 @@ pF.querySelectorAll('td').forEach(function (e) {
       if ((id==endId) || (id==startId)){return}
       board.writeChanges(id, false);
       document.getElementById("move").innerHTML=++move;
-      document.getElementById(current_figure_id).setAttribute('style', 'filter:sepia(100%);order:0; z-index:0;transform:translateY(0px);');
+      document.getElementById(current_figure_id).setAttribute('style', 'filter:sepia(100%);order:0; z-index:0;transform:translateY(0px);background-image: url(img/card_general.png);');
       document.getElementById("win").innerHTML="win";
       for (var i=0;i<=(size*size-1);i++){ 
          pF.rows[Math.floor((i)/size)].cells[(i)%size].setAttribute('style','background:'+FULLtransparent+';');}

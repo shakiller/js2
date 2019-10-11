@@ -123,6 +123,16 @@ body {
 
 }
 
+.bl-1, bl-2{
+    width: 0%;
+    height: 0%;
+    border-radius: 50px 50px 50px 50px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    background: var(--varBG2);
+}
+
 .bl1 .bl-1,
 #bl1 .bl-1 {
     width: 100%;

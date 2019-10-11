@@ -62,7 +62,7 @@ body {
 }
 #move{
     position:absolute;
-    left:1%;
+    left:5%;
     top:1%;
     background-image:url(img/coinsmeter_bg.png);
     background-size:contain;
@@ -98,7 +98,7 @@ body {
 }
 #win{
     position:absolute;
-    right:1%;
+    right:5%;
     top:1%;
     background-image:url(img/coinsmeter_bg.png);
     background-size:contain;

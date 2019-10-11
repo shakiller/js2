@@ -139,6 +139,7 @@ body {
     height: 50%;
     position: relative;
     top: 25%;
+    left:0%;
     background: var(--varBG2);
 }
 
@@ -149,6 +150,7 @@ body {
     width: 50%;
     height: 100%;
     position: relative;
+    top:0%;
     left: 25%;
     background: var(--varBG2);
 }
@@ -162,6 +164,7 @@ body {
     border-radius: 0 0 50px 0;
     position: relative;
     top: 25%;
+    left:0%;
     background: var(--varBG2);
 }
 
@@ -227,6 +230,7 @@ body {
     border-radius: 0 50px 0 0;
     position: relative;
     top: 25%;
+    left:0%;
     background: var(--varBG2);
 }
 
@@ -247,6 +251,7 @@ body {
     height: 50%;
     position: relative;
     top: 25%;
+    left:0%;
     background: var(--varBG2);
 }
 
@@ -266,6 +271,7 @@ body {
     height: 50%;
     position: relative;
     top: 25%;
+    left:0%;
     background: var(--varBG2);
 }
 
@@ -285,6 +291,7 @@ body {
     height: 50%;
     position: relative;
     top: 25%;
+    left:0%;
     background: var(--varBG2);
 }
 
@@ -324,6 +331,7 @@ body {
     height: 50%;
     position: relative;
     top: 25%;
+    left:0%;
     background: var(--varBG2);
 }
 

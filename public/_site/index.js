@@ -22,19 +22,29 @@ function createTable(sizeX, sizeY) {
     table.setAttribute('id', 'playField');
     document.getElementById('Field').appendChild(table);
     pF = document.getElementById('playField');
+    
     start_end_rand();
-    document.getElementById('popup').setAttribute('style','display:none;');
+    
 }
 
 
-var buttonpressed = false;
 
 function setSize(n) {
- size=n;
-createTable(size, size);
-startGame();
+    size=n;
+    setTimeout(popupAnimate, 1);
+    createTable(size, size);
+    
+    startGame();
+    setTimeout(animateStart, 1);
+    
+}
+function popupAnimate(){
+    document.getElementById('popup').setAttribute('style','margin-top:-800px;');
 }
 
+function animateStart(){
+    document.getElementById('playField').setAttribute("class","animateStart")
+}
 
 
 
@@ -49,7 +59,8 @@ function createPopup_Select_level(){
     
     
 }
-createPopup_Select_level();
+setTimeout(createPopup_Select_level, 500);
+
 
 
 

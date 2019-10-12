@@ -1,5 +1,5 @@
 var move = 0;
-var size = 10; /* width */
+var size = 0; /* width */
 var sizeH = size; /* height */
 var BGtransparent = "hsla(0,50%,50%,0.5);"
 var FULLtransparent = "hsla(0,50%,50%,0);"
@@ -21,14 +21,33 @@ function createTable(sizeX, sizeY) {
 
     table.setAttribute('id', 'playField');
     document.getElementById('Field').appendChild(table);
+    pF = document.getElementById('playField');
+    start_end_rand();
+    document.getElementById('popup').setAttribute('style','display:none;');
 }
+
+
+var buttonpressed = false;
+
+function setSize(n) {
+ size=n;
+createTable(size, size);
+startGame();
+}
+
+
+
+
 function createPopup_Select_level(){
     var popup = document.createElement('div');
-    popup.setAttribute('class','popup');
+    popup.setAttribute('id','popup');
     popup.innerHTML='<h2>выберите уровень сложности</h2>';
-    popup.innerHTML=popup.innerHTML+'<input type="button" value="1"> <input type="button" value="2"> <input type="button" value="3">';
     document.getElementById('Field').appendChild(popup); 
-    createTable(selectLevel, selectLevel);
+    popup.innerHTML=popup.innerHTML+'<input type="button" value="1" id="v1" onclick = "setSize(5)"> <input type="button" value="2"  id="v2" onclick = "setSize(7)"> <input type="button" value="3"  id="v3" onclick = "setSize(10)">';
+    
+    
+    
+    
 }
 createPopup_Select_level();
 
@@ -152,7 +171,7 @@ var bl11 = {
 
 var start;
 var end;
-var pF = document.getElementById('playField');
+var pF;
 var current_figure = 1;
 var current_figure_id;
 var fF = document.getElementById('figures');
@@ -191,25 +210,27 @@ function freeways(innerId, outerId) {
 
 function start_end_rand() {
     current_figure_rand();
-    start = Math.floor(Math.random() * size);
-    end = Math.floor(Math.random() * size);
+    start = Math.floor(Math.random() * size);console.log(start," start");
+    end = Math.floor(Math.random() * size);console.log(end," end");
     var start_block = pF.rows[start].cells[0];
     var end_block = pF.rows[end].cells[(size - 1)];
     freeways(start, end);
     startId = start * size;
     endId = end * size + size - 1;
+    console.log(startId," ",endId," s e");
     board.writeChanges(startId, true, start_ways);
     board.writeChanges(endId, true, end_ways);
     start_block.setAttribute("id", "start");
     end_block.setAttribute("id", "end");
-
     return current_figure_id;
 }
 
 
-start_end_rand();
+
+
 document.getElementById("body").setAttribute('style', "background-image:url(" + bodyBG + ");background-size:cover;background-position:" + BGposX + "% 50%;");
 var id = 0
+function startGame(){
 pF.querySelectorAll('td').forEach(function (e) {
     console.log(e)
     e.setAttribute('data-id', id++);
@@ -306,4 +327,4 @@ pF.querySelectorAll('td').forEach(function (e) {
         }
 
     }
-});
+})};

@@ -6,8 +6,8 @@ html{
 }
 body {
     margin:0;
-    --varWid: calc(90vh / 13);
-    --varHei: calc(90vh / 13);
+    --varWid: calc(100% / 13);
+    --varHei: var(--varWid);
     --varBG2: cyan;
     --varBG1:orange;
     width: 100%;
@@ -388,3 +388,17 @@ td{display:block;}
 .playField .tdblock{background: var(--varBG1);}
 #start, #end{background: var(--varBG2)!important;}
 tr{display: flex;}
+
+
+
+
+@media all and (max-width:500px){
+    body{
+     --varWid: 40px;
+     --varHei: var(--varWid);
+
+    }
+    
+    
+    
+}

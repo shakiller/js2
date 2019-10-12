@@ -398,6 +398,7 @@ tr{display: flex;}
      --varHei: var(--varWid);
 
     }
+    #body{position: fixed;}
     
     
     

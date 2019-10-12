@@ -6,7 +6,7 @@ html{
 }
 body {
     margin:0;
-    --varWid: calc(100% / 13);
+    --varWid: calc(100vh / 15);
     --varHei: var(--varWid);
     --varBG2: cyan;
     --varBG1:orange;

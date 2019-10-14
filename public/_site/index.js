@@ -8,6 +8,7 @@ var bodyBG = "img/bg_map.png";
 var HUEdeg = 0;
 var BGposX = 0;
 var checkStartCell;
+var correctWays=false;
 
 function createTable(sizeX, sizeY) {
     var table = document.createElement('table')
@@ -83,7 +84,7 @@ function Board() {
         for (cell in this.table) {
 
 
-            var top = this["table"][+cell].top; //1
+            var top = this["table"][+cell].top; 
             var topParent = () => {
                 if (+cell <= (size - 1)) {
                     return 0
@@ -125,6 +126,7 @@ function Board() {
             if (!checkTop || !checkRight || !checkBottom || !checkLeft) {
                 console.log("fail");
                 document.getElementById("win").innerHTML = "fail";
+                correctWays=false;
                 break;
             } else var a = "prostotak";
         }
@@ -266,6 +268,7 @@ pF.querySelectorAll('td').forEach(function (e) {
             BGposX = 0
         };
         document.getElementById("win").innerHTML = "win";
+        correctWays=true;
         for (var i = 0; i <= (size * size - 1); i++) {
             pF.rows[Math.floor((i) / size)].cells[(i) % size].setAttribute('style', 'background:' + FULLtransparent + ';');
         }
@@ -295,7 +298,7 @@ pF.querySelectorAll('td').forEach(function (e) {
             }
         }
 
-        if ((board["table"][endId].start == true) && (checkStartCell == (size * size))) {
+        if ((board["table"][endId].start == true) && (checkStartCell == (size * size)) && (correctWays==true)) {
             pF.rows[Math.floor((endId) / size)].cells[(endId) % size].innerHTML = "WIN!";
             for (var i = 0; i <= (size * size - 1); i++) {
                 pF.rows[Math.floor((i) / size)].cells[(i) % size].setAttribute('style', 'background:' + FULLtransparent + ';--varBG2: #00ffff00;outline: dotted 1px #80808000;');

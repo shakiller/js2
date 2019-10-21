@@ -40,7 +40,7 @@ function setSize(n) {
     
 }
 function popupAnimate(){
-    document.getElementById('popup').setAttribute('style','margin-top:-800px;');
+    document.getElementById('popup').setAttribute('style','margin-top:-1800px;');
 }
 
 function animateStart(){
@@ -125,7 +125,7 @@ function Board() {
             var checkLeft = left ? !!left == !!leftParent() : true;
             if (!checkTop || !checkRight || !checkBottom || !checkLeft) {
                 console.log("fail");
-                document.getElementById("win").innerHTML = "fail";
+                document.getElementById("win").innerHTML = " ";
                 correctWays=false;
                 break;
             } else var a = "prostotak";

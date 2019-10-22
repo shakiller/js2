@@ -9,9 +9,51 @@ var HUEdeg = 0;
 var BGposX = 0;
 var checkStartCell;
 var correctWays=false;
+var audioBG=new Audio("aud/Ambient.mp3");
+
+
+
+function playSoundBG(){
+    audioBG.play();
+    var sndVoff = "<span class='snd'>&#9834;</span> <input type='button' class='snd' value='-' id='snfOfOff' onclick='vSoundOff()'>";
+    var sndVon = "<input type='button' class='snd' value='+' id='snfOfOn' onclick='vSoundOn()'>";
+    document.getElementById('UI').innerHTML+=sndVoff+sndVon;
+}
+
+function vSoundOff(){
+    function sndDn(){
+        var myintervalSD = setInterval(function(){
+           if(audioBG.volume >= 0.01){audioBG.volume -= 0.01;}
+           if(audioBG.volume <= 0.01)clearInterval(myintervalSD);
+       },30);
+   
+       console.log(audioBG.volume);
+   }
+   
+   sndDn();
+
+    document.getElementById('snfOfOff').setAttribute('style','opacity:0.1;');
+    document.getElementById('snfOfOn').setAttribute('style','opacity:1;');
+}
+
+function vSoundOn(){
+    function sndUp(){
+     var myintervalSU = setInterval(function(){
+        if(audioBG.volume <= 0.8){audioBG.volume += 0.01;}
+        if(audioBG.volume >= 0.8)clearInterval(myintervalSU);
+    },30);
+
+    console.log(audioBG.volume);
+}
+
+sndUp();
+    
+    document.getElementById('snfOfOff').setAttribute('style','opacity:1;');
+    document.getElementById('snfOfOn').setAttribute('style','opacity:0.1;');
+}
 
 function createTable(sizeX, sizeY) {
-    var table = document.createElement('table')
+    var table = document.createElement('table');
     var inTD = "<td class='bl'><div class='bl-1'></div><div class='bl-2'></div></td>";
     for (j = 0; j < sizeY; j++) {
         tr = table.insertRow();
@@ -41,6 +83,7 @@ function setSize(n) {
 }
 function popupAnimate(){
     document.getElementById('popup').setAttribute('style','margin-top:-1800px;');
+    playSoundBG();
 }
 
 function animateStart(){

@@ -10,14 +10,28 @@ var BGposX = 0;
 var checkStartCell;
 var correctWays=false;
 var audioBG=new Audio("aud/Ambient.mp3");
+var audioClick=new Audio("aud/Ding-ding-sound.mp3");
 
-
+playSoundStart();
 
 function playSoundBG(){
     audioBG.play();
     var sndVoff = "<span class='snd'>&#9834;</span> <input type='button' class='snd' value='-' id='snfOfOff' onclick='vSoundOff()'>";
     var sndVon = "<input type='button' class='snd' value='+' id='snfOfOn' onclick='vSoundOn()'>";
     document.getElementById('UI').innerHTML+=sndVoff+sndVon;
+}
+
+function playSoundClick(){
+    switch(Math.floor(Math.random()*2)+1){
+    case 1:audioClick=new Audio("aud/Ding-1.mp3");break;
+    case 2:audioClick=new Audio("aud/Ding-2.mp3");break;
+    }
+    audioClick.play();
+}
+
+function playSoundStart(){
+    audioClick=new Audio("aud/Ding-ding-sound.mp3");
+    audioClick.play();
 }
 
 function vSoundOff(){
@@ -288,12 +302,14 @@ document.getElementById("body").setAttribute('style', "background-image:url(" + 
 var id = 0
 function startGame(){
 pF.querySelectorAll('td').forEach(function (e) {
-    console.log(e)
+    console.log(e);
+    
     e.setAttribute('data-id', id++);
     e.onclick = function () {
         document.getElementById("playField").setAttribute('style', "background-image:url(" + bg + ");background-size:cover;background-position:center;");
 
         HUEdeg = HUEdeg + 5;
+        playSoundClick();
         var setAttr = "tdblock bl " + current_figure_id;
         var tempThis = this;
         this.setAttribute('class', setAttr);
@@ -343,6 +359,7 @@ pF.querySelectorAll('td').forEach(function (e) {
 
         if ((board["table"][endId].start == true) && (checkStartCell == (size * size)) && (correctWays==true)) {
             pF.rows[Math.floor((endId) / size)].cells[(endId) % size].innerHTML = "WIN!";
+            playSoundStart();
             for (var i = 0; i <= (size * size - 1); i++) {
                 pF.rows[Math.floor((i) / size)].cells[(i) % size].setAttribute('style', 'background:' + FULLtransparent + ';--varBG2: #00ffff00;outline: dotted 1px #80808000;');
             }

@@ -9,7 +9,7 @@ var HUEdeg = 0;
 var BGposX = 0;
 var checkStartCell;
 var correctWays=false;
-var audioBG=new Audio("aud/Ambient.mp3");
+var audioBG=new Audio("aud/ambient for maze game.mp3");
 var audioClick=new Audio("aud/Ding-ding-sound.mp3");
 
 playSoundStart();
@@ -22,9 +22,20 @@ function playSoundBG(){
 }
 
 function playSoundClick(){
-    switch(Math.floor(Math.random()*2)+1){
-    case 1:audioClick=new Audio("aud/Ding-1.mp3");break;
-    case 2:audioClick=new Audio("aud/Ding-2.mp3");break;
+    switch(Math.floor(Math.random()*12)+1){
+    case 1:audioClick=new Audio("aud/n1.mp3");break;
+    case 2:audioClick=new Audio("aud/n2.mp3");break;
+    case 3:audioClick=new Audio("aud/n3.mp3");break;
+    case 4:audioClick=new Audio("aud/n4.mp3");break;
+    case 5:audioClick=new Audio("aud/n5.mp3");break;
+    case 6:audioClick=new Audio("aud/n6.mp3");break;
+    case 7:audioClick=new Audio("aud/n7.mp3");break;
+    case 8:audioClick=new Audio("aud/n8.mp3");break;
+    case 9:audioClick=new Audio("aud/n9.mp3");break;
+    case 10:audioClick=new Audio("aud/n10.mp3");break;
+    case 11:audioClick=new Audio("aud/n11.mp3");break;
+    case 12:audioClick=new Audio("aud/n12.mp3");break;
+    
     }
     audioClick.play();
 }

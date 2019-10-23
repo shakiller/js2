@@ -1,10 +1,10 @@
 var move = 0;
 var size = 0; /* width */
 var sizeH = size; /* height */
-var BGtransparent = "hsla(0,50%,50%,0.5);"
+var BGtransparent = "#00f3ff78;"
 var FULLtransparent = "hsla(0,50%,50%,0);"
-var bg = "https://i.ytimg.com/vi/3p4Gc-dnV3U/maxresdefault.jpg";
-var bodyBG = "img/bg_map.png";
+var bg /*= "https://i.ytimg.com/vi/3p4Gc-dnV3U/maxresdefault.jpg"*/;
+var bodyBG /*= "img/bg_map.png"*/;
 var HUEdeg = 0;
 var BGposX = 0;
 var checkStartCell;
@@ -382,7 +382,7 @@ function startGame() {
 
 
             for (var i = 0; i <= (size * size - 1); i++) {
-                pF.rows[Math.floor((i) / size)].cells[(i) % size].setAttribute('style', 'background:orange;');
+                pF.rows[Math.floor((i) / size)].cells[(i) % size].setAttribute('style', 'background:#00f3ffaa;');
             }
 
             checkway(startId, count);

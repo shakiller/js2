@@ -9,13 +9,14 @@ var HUEdeg = 0;
 var BGposX = 0;
 var checkStartCell;
 var correctWays = false;
-var audioBG = new Audio("aud/ambient for maze game.mp3");
+var audioBG = new Audio("aud/ambient for maze game 2.mp3");
 var audioClick = new Audio("aud/Ding-ding-sound.mp3");
 
 playSoundStart();
 
 function playSoundBG() {
     audioBG.play();
+    audioBG.volume = 0.2;
     var sndVoff = "<span class='snd'>&#9834;</span> <input type='button' class='snd' value='-' id='snfOfOff' onclick='vSoundOff()'>";
     var sndVon = "<input type='button' class='snd' value='+' id='snfOfOn' onclick='vSoundOn()'>";
     document.getElementById('UI').innerHTML += sndVoff + sndVon;
@@ -67,6 +68,7 @@ function playSoundClick() {
 function playSoundStart() {
     audioClick = new Audio("aud/Ding-ding-sound.mp3");
     audioClick.play();
+    audioBG.volume = 0.2;
 }
 
 function vSoundOff() {

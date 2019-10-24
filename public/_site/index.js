@@ -23,44 +23,31 @@ function playSoundBG() {
 }
 
 function playSoundClick() {
-    switch (Math.floor(Math.random() * 12) + 1) {
+    switch (Math.floor(Math.random() * 8) + 1) {
         case 1:
-            audioClick = new Audio("aud/n1.mp3");
+            audioClick = new Audio("aud/nn_1.mp3");
             break;
         case 2:
-            audioClick = new Audio("aud/n2.mp3");
+            audioClick = new Audio("aud/nn_2.mp3");
             break;
         case 3:
-            audioClick = new Audio("aud/n3.mp3");
+            audioClick = new Audio("aud/nn_3.mp3");
             break;
         case 4:
-            audioClick = new Audio("aud/n4.mp3");
+            audioClick = new Audio("aud/nn_4.mp3");
             break;
         case 5:
-            audioClick = new Audio("aud/n5.mp3");
+            audioClick = new Audio("aud/nn_5.mp3");
             break;
         case 6:
-            audioClick = new Audio("aud/n6.mp3");
+            audioClick = new Audio("aud/nn_6.mp3");
             break;
         case 7:
-            audioClick = new Audio("aud/n7.mp3");
+            audioClick = new Audio("aud/nn_7.mp3");
             break;
         case 8:
-            audioClick = new Audio("aud/n8.mp3");
+            audioClick = new Audio("aud/nn_8.mp3");
             break;
-        case 9:
-            audioClick = new Audio("aud/n9.mp3");
-            break;
-        case 10:
-            audioClick = new Audio("aud/n10.mp3");
-            break;
-        case 11:
-            audioClick = new Audio("aud/n11.mp3");
-            break;
-        case 12:
-            audioClick = new Audio("aud/n12.mp3");
-            break;
-
     }
     audioClick.play();
 }

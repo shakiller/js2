@@ -333,7 +333,7 @@ function startGame() {
 
         e.setAttribute('data-id', id++);
         e.onclick = function () {
-            document.getElementById("playField").setAttribute('style', "background-image:url(" + bg + ");background-size:cover;background-position:center;");
+            document.getElementById("playField").setAttribute('style', "background-image: radial-gradient(#1aeacf, transparent, #ee11fd);;background-size:cover;background-position:center;");
 
             HUEdeg = HUEdeg + 5;
             playSoundClick();
